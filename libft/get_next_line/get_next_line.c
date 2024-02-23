@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 16:16:13 by sokaraku          #+#    #+#             */
-/*   Updated: 2023/12/20 14:12:19 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:34:45 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ char	*remove_from_keep(char *line, char *keep)
 	to_del = keep;
 	if (!line || !keep || (j == i))
 	{
-		free(keep);
+		if (keep)
+			free(keep);
 		return (NULL);
 	}
 	new_keep = malloc(sizeof(char) * (j - i) + 1);
