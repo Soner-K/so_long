@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/23 19:29:06 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:34:05 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_rectangle
 	int	left;
 	int	down;
 	int	right;
+	int	last;
 }		t_rectangle;
 
 #endif

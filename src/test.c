@@ -6,11 +6,11 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:19:36 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/23 19:30:52 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:01:20 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int		find_len_strs(char **strs)
 {
@@ -21,16 +21,38 @@ int		find_len_strs(char **strs)
 		return (0);
 	while (strs[i])
 		i++;
-	return (i;)
+	return (i);
 }
 
-char	is_rectangle(char **map)
+
+char	compare_top_down(char **map)
 {
-	t_rectangle	check;
+	int	n;
+	int	n2;
+	int	last;
+	int	top_size;
 	
-	check.down = ft_strlen(map[find_len_strs(map)] - 1);
-	check.top = ft_strlen(*map);
+	n = find_len_strs(map);
+	if (n == 0)
+		exit(EXIT_FAILURE); //faire fct erreur
+	last = n - 1;
+	top_size = ft_strlen(*map);
+	n2 = n;
+	while (*map && map[last] && **map == '1' && *map[last] == '1' && n > 0)
+	{
+		n--;
+		*map++
+	}
+	
 }
+
+// char	is_rectangle(char **map)
+// {
+// 	t_rectangle	check;
+	
+// 	check.down = ft_strlen(map[find_len_strs(map)] - 1);
+// 	check.top = ft_strlen(*map);
+// }
 
 char	*put_to_string(char *str, char *tmp, int fd)
 {
