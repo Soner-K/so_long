@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   len_strs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 17:59:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/29 13:22:33 by sokaraku         ###   ########.fr       */
+/*   Created: 2024/02/29 12:39:23 by sokaraku          #+#    #+#             */
+/*   Updated: 2024/02/29 12:41:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-long	ft_strlen(const char *s)
+int	find_len_strs(char **strs)
 {
-	long	i;
+	int	i;
 
-	if (!s)
-		return (0);
 	i = 0;
-	while (s[i])
+	if (!(*strs) || !strs)
+		return (0);
+	while (strs[i])
 		i++;
 	return (i);
 }

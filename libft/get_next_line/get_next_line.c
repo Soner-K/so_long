@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 16:16:13 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/23 18:34:45 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:43:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*keep_to_line(char *keep)
 	if (ft_check(keep, '\n'))
 		line = malloc(sizeof(char) * ft_check(keep, '\n') + 2);
 	else
-		line = malloc(sizeof(char) * ft_strlen(keep) + 1);
+		line = malloc(sizeof(char) * find_len(keep) + 1);
 	if (!line)
 		return (NULL);
 	while (keep[i] != '\n' && keep[i])
@@ -73,13 +73,12 @@ char	*remove_from_keep(char *line, char *keep)
 	char	*new_keep;
 	char	*to_del;
 
-	i = ft_strlen(line);
-	j = ft_strlen(keep);
+	i = find_len(line);
+	j = find_len(keep);
 	to_del = keep;
 	if (!line || !keep || (j == i))
 	{
-		if (keep)
-			free(keep);
+		free(keep);
 		return (NULL);
 	}
 	new_keep = malloc(sizeof(char) * (j - i) + 1);
