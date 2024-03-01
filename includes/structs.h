@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/28 17:34:05 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:12:52 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,15 @@ typedef struct s_rectangle
 	int	right;
 	int	last;
 }		t_rectangle;
+
+typedef struct s_elements
+	// structure that acts as a counter for each element in the map
+{
+	int wall;
+	int empty;
+	int collectible;
+	int exit;
+	int pos;
+}		t_elements;
 
 #endif

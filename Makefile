@@ -9,6 +9,24 @@ MINILIBX_DIR		=		mlx
 MINILIBX			=		$(addprefix $(MINILIBX_DIR)/, $(LIBRARY_MINILIBX))
 
 FILES				=		test.c \
+							create_map.c \
+							parse_map.c \
+							utils.c \
+
+MAPS				:=		maps/bad_extension.txt \
+							maps/empty.ber\
+							maps/no_collectible.ber\
+							maps/no_entry.ber\
+							maps/no_exit.ber\
+							maps/no_extension\
+							maps/not_closed.ber\
+							maps/one_line.ber\
+							maps/only_wall.ber\
+							maps/parsable.ber\
+							maps/two_maps.ber\
+							maps/uneven.ber\
+							maps/wrong_characters.ber
+
 
 SRC_DIR				=		src
 SRC					=		$(addprefix $(DIRECTORY)/, $(FILES))
@@ -55,12 +73,20 @@ fclean				:		clean
 							@make -s -C libft fclean
 							@make -s -C mlx clean
 							@echo "$(LBLUE)So_long's executable removed $(COLOR_END) $(BYE)"
+							@rm -f out.txt
 
 re					:		fclean all
 
-.PHONY				: 		all clean fclean re
+files_test			:		$(NAME) $(MAPS)
+							@rm -f out.txt
+							@echo "MAPS = $(MAPS)"
+							@echo "$(BLUE)Running valgrind on each map...$(COLOR_END)"
+							@for map in $(MAPS) ; do \
+								valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./so_long $$map > /dev/null 2>> out.txt; \
+							done
+							@echo "$(LBLUE) Done ! Output can be found in out.txt$(COLOR_END)"
 
-
+.PHONY				: 		all clean fclean re files_test
 
 
 LGREEN				=	\033[1;32m
