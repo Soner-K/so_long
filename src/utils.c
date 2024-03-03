@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/01 16:22:41 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/03 23:04:13 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	set_elements(t_elements *elements)
 void	free_and_quit(char *msg, char **strs)
 {
 	free_arrs((void **)strs);
+	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }

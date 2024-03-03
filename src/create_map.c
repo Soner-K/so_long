@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:39:14 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/01 16:41:23 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/03 23:04:41 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*put_to_string(char *str, char *tmp, int fd, char *path)
 	get_next_line(fd, 1);
 	return (close(fd), str);
 }
+
 /**
  * @brief Transforms a string into a map array.
  * @param path The path to the map's file.
@@ -81,6 +82,7 @@ char	**ber_to_map(char *path)
 	close(fd);
 	return (map);
 }
+
 /**
  * @brief Checks if a given file contains a .ber extension.
  * @param file The path to the map's file.

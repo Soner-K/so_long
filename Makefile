@@ -8,10 +8,18 @@ LIBRARY_MINILIBX	=		libmlx.a
 MINILIBX_DIR		=		mlx
 MINILIBX			=		$(addprefix $(MINILIBX_DIR)/, $(LIBRARY_MINILIBX))
 
+LIBS				=		libs.h \
+							macros.h \
+							so_long.h \
+							structs.h \
+LIBS_DIR			=		includes
+HEADERS				=		$(addprefix $(LIBS_DIR)/, $(LIBS))
+
 FILES				=		test.c \
 							create_map.c \
 							parse_map.c \
 							utils.c \
+							flood_fill.c \
 
 MAPS				:=		maps/bad_extension.txt \
 							maps/empty.ber\
@@ -77,16 +85,28 @@ fclean				:		clean
 
 re					:		fclean all
 
-files_test			:		$(NAME) $(MAPS)
+files_mem			:		$(NAME) $(MAPS)
 							@rm -f out.txt
 							@echo "MAPS = $(MAPS)"
 							@echo "$(BLUE)Running valgrind on each map...$(COLOR_END)"
-							@for map in $(MAPS) ; do \
+							@for map in $(MAPS); do \
 								valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./so_long $$map > /dev/null 2>> out.txt; \
 							done
-							@echo "$(LBLUE) Done ! Output can be found in out.txt$(COLOR_END)"
+							@echo "$(LBLUE)Done ! Output can be found in out.txt$(COLOR_END)"
 
-.PHONY				: 		all clean fclean re files_test
+files_out			:		$(NAME) $(MAPS)
+							@echo "MAPS = $(MAPS)"
+							@echo "$(BLUE)Running the program on each map...$(COLOR_END)"
+							@for map in $(MAPS); do \
+								./so_long $$map; \
+							done
+							@echo "$(LBLUE)Done !$(COLOR_END)"
+
+norm				:
+							norminette $(SRC)
+							norminette -R CheckDefine $(HEADERS)
+
+.PHONY				: 		all clean fclean re files_mem files_out
 
 
 LGREEN				=	\033[1;32m
