@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/03 23:07:08 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:12:52 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,48 @@ t_coordinates	find_initial_pos(char **map)
 	return (p);
 }
 
-// void	flood_fill(char **map_cp)
-// {
-// 	t_coordinates	p;
-// 	t_coordinates	i;
-// 	char			check;
+char	set_coordinates(t_coordinates *p, char config, char **map_cp)
+{
+	static int	len_strs;
+	static int	len_one;
+	
+	len_strs = find_len_strs(map_cp);
+	len_one = ft_strlen(*map_cp);
+	if (config == UP)
+		p->x--;
+	else if (config == RIGHT)
+		p->y++;
+	else if (config == DOWN)
+		p->x++;
+	else if (config == LEFT)
+		p->y--;
+	if (p->y * p->x < 0)
+		return (0);
+	if (p->x > len_strs - 1)
+		return (-1);
+	else if (p->y > len_one - 1)
+		return (-2);
+	return (TRUE);
+}
 
-// 	p = find_initial_pos(map_cp);
-// 	i.x = 0;
-// 	i.y = 0;
-// 	while (1)
-// 	{
-// 		if ()
-// 	}
-// }
+char	check_config(char **map_cp, t_coordinates p, int i)
+{
+	t_coordinates pos;
+	
+	pos = find_initial_pos(map_cp);
+	while (1)
+	{
+		
+	}
+}
+void	flood_fill(char **map_cp)
+{
+	t_coordinates	p;
+	char			check;
+
+	p = find_initial_pos(map_cp);
+	while (1)
+	{
+		if ()
+	}
+}

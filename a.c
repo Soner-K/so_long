@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   a.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/04 14:45:02 by sokaraku         ###   ########.fr       */
+/*   Created: 2024/03/04 15:43:04 by sokaraku          #+#    #+#             */
+/*   Updated: 2024/03/04 15:54:14 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#include <stdio.h>
 
-# define TRUE 1
-# define FALSE 0
-# define MKO "Allocation issue"
-# define UP 1
-# define RIGHT 2
-# define DOWN 3
-# define LEFT 4
-# define TOO_MANY_EXIT -1
-# define TOO_MANY_POS -2
-# define OUT_OF_MAP -1
-#endif
+void	back_track(int tab[], int size)
+{
+	if (size < 1)
+		return ;
+	printf("%d ", tab[0]);
+	back_track(tab + 1, size - 1);
+}
+
+int main(void)
+{
+	int tab[] = {1, 2, 3, 4 , 5, 6, 7};
+	back_track(tab, 7);
+}

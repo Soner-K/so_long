@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:39:14 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/03 23:04:41 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:52:10 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ char	**ber_to_map(char *path)
 	if (find_len_strs(map) < 3)
 	{
 		free(str);
+		close(fd);
 		free_and_quit("Map too small", map);
 	}
 	free(str);
-	close(fd);
-	return (map);
+	return (close (fd), map);
 }
 
 /**
