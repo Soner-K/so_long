@@ -20,6 +20,7 @@ FILES				=		test.c \
 							parse_map.c \
 							utils.c \
 							flood_fill.c \
+							mlx_test.c \
 
 MAPS				:=		maps/bad_extension.txt \
 							maps/empty.ber\
@@ -56,7 +57,7 @@ $(NAME)				:		$(OBJ_DIR) $(OBJ)
 							make -s -C $(MINILIBX_DIR)
 							@echo "$(GREEN)libft compiled !\n$(COLOR_END)"
 							@echo "$(LYELLOW)Compiling so_long$(COLOR_END)"
-							$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -L $(MINILIBX) -lm -o $(NAME)
+							$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) -Lmlx -lX11 -lXext -lm -o $(NAME)
 							@echo "$(LGREEN)so_long compiled ! Have fun\n$(COLOR_END)"
 
 $(OBJ_DIR)			:		

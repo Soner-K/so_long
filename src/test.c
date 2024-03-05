@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:19:36 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/03 22:30:55 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:05:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@
 // 	printf("\n");
 // }
 
-int main(int ac, char **av)
-{
-	char	**map;
-	int		i;
-	t_coordinates n;
+// int main(int ac, char **av)
+// {
+// 	char	**map;
+// 	int		i;
+// 	t_coordinates n;
 	
-	if (ac != 2)
-		exit(EXIT_FAILURE);
-	i = 0;
-	printf("map is %s\n", av[1]);
-	map = parse_map(av[1], 0);
-	while (map[i])
-		printf("%s\n", map[i++]);
-	n = find_initial_pos(map);
-	printf("x = %d and y = %d\n", n.x, n.y);
-	printf("Line with entry is %s\n", map[n.x]);
-	printf("Specific case is map[%d][%d] : %c\n", n.x, n.y, map[n.x][n.y]);
-	free_arrs((void **) map);
-	exit(EXIT_SUCCESS);
-}
+// 	if (ac != 2)
+// 		exit(EXIT_FAILURE);
+// 	i = 0;
+// 	printf("map is %s\n", av[1]);
+// 	map = parse_map(av[1], 0);
+// 	while (map[i])
+// 		printf("%s\n", map[i++]);
+// 	n = find_initial_pos(map);
+// 	printf("x = %d and y = %d\n", n.x, n.y);
+// 	printf("Line with entry is %s\n", map[n.x]);
+// 	printf("Specific case is map[%d][%d] : %c\n", n.x, n.y, map[n.x][n.y]);
+// 	free_arrs((void **) map);
+// 	exit(EXIT_SUCCESS);
+// }

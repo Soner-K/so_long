@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/04 15:12:52 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:08:34 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,24 @@ char	set_coordinates(t_coordinates *p, char config, char **map_cp)
 	return (TRUE);
 }
 
-char	check_config(char **map_cp, t_coordinates p, int i)
-{
-	t_coordinates pos;
+// char	check_config(char **map_cp, t_coordinates p, int i)
+// {
+// 	t_coordinates pos;
 	
-	pos = find_initial_pos(map_cp);
-	while (1)
-	{
+// 	pos = find_initial_pos(map_cp);
+// 	while (1)
+// 	{
 		
-	}
-}
-void	flood_fill(char **map_cp)
-{
-	t_coordinates	p;
-	char			check;
+// 	}
+// }
+// void	flood_fill(char **map_cp)
+// {
+// 	t_coordinates	p;
+// 	char			check;
 
-	p = find_initial_pos(map_cp);
-	while (1)
-	{
-		if ()
-	}
-}
+// 	p = find_initial_pos(map_cp);
+// 	while (1)
+// 	{
+// 		if ()
+// 	}
+// }
