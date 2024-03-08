@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/03 23:06:24 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:41:44 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	check_map_elements(char **map, int i, int j)
 		free_and_quit("Exit not found", map);
 }
 
-char	**parse_map(char *file, int i)
+char	**parse_map(char *file, int i) //changer le nom pr + de clarte
 {
 	char	**map;
 	char	**map_cp;

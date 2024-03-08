@@ -6,12 +6,22 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:43:04 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/05 17:23:27 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:09:15 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/includes/libft.h"
 #include <stdio.h>
+
+int	ft_strlen2(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i++])
+		;
+	return (i);
+}
 
 // Function to swap values at two pointers
 void	ft_swap(char *x, char *y)
@@ -40,7 +50,7 @@ void	permute(char *a, int l, int r)
 // Driver program to test the above functions
 int	main(void)
 {
-	char str[] = "1234";
-	permute(str, 0, ft_strlen(str) - 1);
+	char str[] = "123";
+	permute(str, 0, ft_strlen2(str) - 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:05:32 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/06 20:42:54 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:03:49 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,22 @@ typedef struct s_win
 // 	mlx_new_image
 // }
 
-int	main(void)
-{
-	t_win	mlx;
-	void	*ptr;
+// int	main(void)
+// {
+// 	t_win	mlx;
+// 	void	*ptr;
 	
-	mlx.mlx_ptr = mlx_init();
-	if (!mlx.mlx_ptr)
-		exit(-1);
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1920, 1080, "ftg");
-	if (!mlx.win_ptr)
-		return (mlx_destroy_display(mlx.mlx_ptr), free(mlx.mlx_ptr),
-			exit(EXIT_FAILURE), 1);
-	ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "gamepad.xpm", &mlx.x, &mlx.y);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, ptr, mlx.x, mlx.y);
-	mlx_loop(mlx.mlx_ptr);
-}
+// 	mlx.mlx_ptr = mlx_init();
+// 	if (!mlx.mlx_ptr)
+// 		exit(-1);
+// 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1920, 1080, "ftg");
+// 	if (!mlx.win_ptr)
+// 		return (mlx_destroy_display(mlx.mlx_ptr), free(mlx.mlx_ptr),
+// 			exit(EXIT_FAILURE), 1);
+// 	ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "gamepad.xpm", &mlx.x, &mlx.y);
+// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, ptr, mlx.x, mlx.y);
+// 	mlx_loop(mlx.mlx_ptr);
+// }
 
 // typedef struct	s_data {
 // 	void	*img;
