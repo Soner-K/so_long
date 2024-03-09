@@ -6,59 +6,52 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/08 13:24:00 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:14:29 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	set_coordinates(t_coordinates *p, char config, char **map_cp)
+static void	flood_fill(char **map_cp, int x, int y)
 {
-	static int		len_strs;
-	static int		len_one;
-	t_coordinates	*store;
+	static int	col;
+	static int	row;
 
-	len_strs = find_len_strs(map_cp);
-	len_one = ft_strlen(*map_cp);
-	store = p;
-	if (config == UP)
-		p->x--;
-	else if (config == RIGHT)
-		p->y++;
-	else if (config == DOWN)
-		p->x++;
-	else if (config == LEFT)
-		p->y--;
-	if (p->y * p->x < 0)
-		return (p = store, 0);
-	if (p->x > len_strs - 1)
-		return (p = store, -1);
-	else if (p->y > len_one - 1)
-		return (p = store, -2);
-	return (TRUE);
+	col = ft_strlen(*map_cp);
+	row = find_len_strs(map_cp);
+	if (x < 0 || y < 0 || x > row - 1 || y > col - 1 || map_cp[x][y] == WALL)
+		return ;
+	if (map_cp[x][y] != WALL)
+		map_cp[x][y] = WALL;
+	flood_fill(map_cp, x + 1, y);
+	flood_fill(map_cp, x - 1, y);
+	flood_fill(map_cp, x, y + 1);
+	flood_fill(map_cp, x, y - 1);
 }
 
-void	fill_it(t_coordinates p, char **map_cp, char config)
+void	check_for_path(char **map, char **map_cp)
 {
-	static int	collectibles;
-	static int	count;
-
-	collectibles = count_element(map_cp, 'C');
-	if (set_coordinates(&p, config, map_cp) < 1)
-		// what if not possible ?
-		return ;
-	// if (map_cp[p.x][p.y] == '1')
-	// 	return ;
-	if (map_cp[p.x][p.y] == 'C')
+	int				x;
+	int				y;
+	t_coordinates	pos;
+	
+	x = -1;
+	y = -1;
+	pos = find_initial_pos(map_cp);
+	flood_fill(map_cp, pos.x, pos.y);
+	while (map_cp[++x])
 	{
-		map_cp[p.x][p.y] = '1';
-		count++;
+		while (map_cp[x][++y])
+		{
+			if (map_cp[x][y] != WALL)
+			{
+				free_multiple_arrs(2, map_cp, map);
+				print_and_exit("No valid path in the map");
+			}
+		}
+			y = -1;
 	}
-	if (map_cp[p.x][p.y] == '0' || map_cp[p.x][p.y] == 'P')
-		map_cp[p.x][p.y] = '1';
-	if (config + 1 == 4)
-		config = 1 ;
-	fill_it(p, map_cp, config + 1);
+	free_arrs((void **) map_cp);
 }
 
 // char	check_config(char **map_cp, t_coordinates p, int i)

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:34:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/08 14:45:15 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:54:23 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ void	init_screen(t_data *data, char **map)
 	}
 }
 
-int main(int ac, char **av)
-{
-	t_data	data;
-	char	**map;
+// int main(int ac, char **av)
+// {
+// 	t_data	data;
+// 	char	**map;
 
-	map = parse_map(av[1], 0);
-	data.mlx = mlx_init();
-	data.window = mlx_new_window(data.mlx, 64, 64, "ftg");
-	init_screen(&data, map);
-	mlx_loop(data.mlx);
-	mlx_destroy_window(data.mlx, data.window);
-	mlx_destroy_display(data.mlx);
-	free(data.mlx);
-	free(data.window);
-	return (0);
-}
+// 	map = parse_map(av[1], 0);
+// 	data.mlx = mlx_init();
+// 	data.window = mlx_new_window(data.mlx, 64, 64, "ftg");
+// 	init_screen(&data, map);
+// 	mlx_loop(data.mlx);
+// 	mlx_destroy_window(data.mlx, data.window);
+// 	mlx_destroy_display(data.mlx);
+// 	free(data.mlx);
+// 	free(data.window);
+// 	return (0);
+// }

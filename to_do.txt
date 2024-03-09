@@ -1,0 +1,5 @@
+handling pontential leaks in map creation (parse_map)
+Storing width and length of screen into macros
+resizing the assets
+
+note : window = lenx *32 + leny *32

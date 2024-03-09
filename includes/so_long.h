@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/08 13:02:30 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:53:12 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void			compare_sides(char **map);
 char			**parse_map(char *path, int i);
 t_coordinates	find_initial_pos(char **map);
 int				count_element(char **map, char c);
-void			fill_it(t_coordinates p, char **map_cp, char config);
+// void			flood_fill(char **map_cp, int x, int y);
+void			check_for_path(char **map, char **map_cp);
 #endif

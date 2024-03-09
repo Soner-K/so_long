@@ -21,7 +21,7 @@ FILES				=		test.c \
 							utils.c \
 							flood_fill.c \
 							mlx_test.c \
-							to_screen.c \
+							# to_screen.c \
 
 MAPS				:=		maps/bad_extension.txt \
 							maps/empty.ber\
@@ -35,7 +35,9 @@ MAPS				:=		maps/bad_extension.txt \
 							maps/parsable.ber\
 							maps/two_maps.ber\
 							maps/uneven.ber\
-							maps/wrong_characters.ber
+							maps/wrong_characters.ber\
+							maps/closed_entry.ber\
+							maps/closed_exit.ber\
 
 
 SRC_DIR				=		src

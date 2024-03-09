@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/08 14:41:44 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:13:19 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Compares the top and the bottom of the map. If they're different,
- *  or one of them contains something else than '1', the program quits.
+ *  or one of them contains something else than WALL, the program quits.
  * @param map An array of strings, containing each line of the .ber file
  * acting as the map.
  * @returns top_size == 0. If top_size is 0,
@@ -37,8 +37,8 @@ void	compare_top_down(char **map)
 	top_size = ft_strlen(*map);
 	if (top_size != ft_strlen(map[last]))
 		free_and_quit("Uneven top and bottom sides", map);
-	while (map[0][++i] && map[last][++j] && map[0][i] == '1'
-		&& map[last][j] == '1' && top_size > 0)
+	while (map[0][++i] && map[last][++j] && map[0][i] == WALL
+		&& map[last][j] == WALL && top_size > 0)
 		top_size--;
 	if (top_size == 0)
 		return ;
@@ -59,8 +59,8 @@ void	compare_sides(char **map)
 		free_and_quit("Map not long enough", map);
 	while (len_strs--)
 	{
-		if (!(map[i][0] && map[i][0] == '1' && map[i][len - 1] && map[i][len
-				- 1] == '1'))
+		if (!(map[i][0] && map[i][0] == WALL && map[i][len - 1] && map[i][len
+				- 1] == WALL))
 			free_and_quit("Map not closed by walls", map);
 		i++;
 		if (map[i] && ft_strlen(map[i]) != len)
@@ -78,20 +78,20 @@ void	compare_sides(char **map)
  */
 char	check_one_element(char c, t_elements *elements)
 {
-	if (c == '1')
+	if (c == WALL)
 		return (elements->wall++, 1);
-	if (c == '0')
+	if (c == EMPTY)
 		return (elements->empty++, 1);
-	if (c == 'E')
+	if (c == EXIT)
 	{
 		elements->exit++;
 		if (elements->exit > 1)
 			return (TOO_MANY_EXIT);
 		return (1);
 	}
-	if (c == 'C')
+	if (c == COLLECTIBLE)
 		return (elements->collectible++, 1);
-	if (c == 'P')
+	if (c == POS)
 	{
 		elements->pos++;
 		if (elements->pos > 1)
@@ -137,7 +137,7 @@ void	check_map_elements(char **map, int i, int j)
 	if (elements.exit == 0)
 		free_and_quit("Exit not found", map);
 }
-
+// /_\ GERER LES ECHECS D'ALLOC. Leaks potentiels ici
 char	**parse_map(char *file, int i) //changer le nom pr + de clarte
 {
 	char	**map;
@@ -146,7 +146,7 @@ char	**parse_map(char *file, int i) //changer le nom pr + de clarte
 	check_if_ber(file);
 	map = ber_to_map(file);
 	if (!map)
-		print_and_exit(MKO);
+		print_and_exit(MKO); //pas exit car leak si MKO dans appele
 	map_cp = NULL;
 	compare_top_down(map);
 	compare_sides(map);
@@ -155,10 +155,10 @@ char	**parse_map(char *file, int i) //changer le nom pr + de clarte
 		return (map);
 	if (i == 0)
 	{
-		i = 1;
-		map_cp = parse_map(file, i);
+		map_cp = parse_map(file, 1);
 		if (!map_cp)
 			return (NULL); //necessaire? si map_cp null, alors exit ds appelant
-	}	
+	}
+	check_for_path(map, map_cp);
 	return (free_arrs((void **) map_cp), map);
 }
