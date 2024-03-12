@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/09 17:14:29 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:07:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,3 @@ void	check_for_path(char **map, char **map_cp)
 	}
 	free_arrs((void **) map_cp);
 }
-
-// char	check_config(char **map_cp, t_coordinates p, int i)
-// {
-// 	t_coordinates pos;
-
-// 	pos = find_initial_pos(map_cp);
-// 	while (1)
-// 	{
-
-// 	}
-// }
-// void	flood_fill(char **map_cp)
-// {
-// 	t_coordinates	p;
-// 	char			check;
-
-// 	p = find_initial_pos(map_cp);
-// 	while (1)
-// 	{
-// 		if ()
-// 	}
-// }

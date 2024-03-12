@@ -1,5 +1,7 @@
 handling pontential leaks in map creation (parse_map)
 Storing width and length of screen into macros
-resizing the assets
+resizing the assets (on canvas)
 
-note : window = lenx *32 + leny *32
+note : window = lenx *32 + leny *32 or 64
+
+finish map_printing (find a way to efficiently handle image's memory)

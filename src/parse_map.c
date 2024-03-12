@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/09 17:13:19 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:10:54 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	check_one_element(char c, t_elements *elements)
 	}
 	if (c == COLLECTIBLE)
 		return (elements->collectible++, 1);
-	if (c == POS)
+	if (c == PLAYER)
 	{
 		elements->pos++;
 		if (elements->pos > 1)

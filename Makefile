@@ -49,6 +49,10 @@ OBJ					=		$(addprefix $(OBJ_DIR)/,$(FILES:.c=.o))
 CC					=		cc
 CFLAGS				=		-Wall -Wextra -Werror -g3 -I includes
 
+XPM 				:=		"$(shell find assets/xpm -type f)"
+NB_XPM				:=		$(shell find assets/xpm -type f | wc -l)			
+MACROS 				:=		-DXPM_FILES="\$(XPM)\" -DNB_SPRITES=$(NB_XPM)
+
 all					:		$(NAME)
 
 
@@ -67,7 +71,7 @@ $(OBJ_DIR)			:
 							mkdir -p $@
 
 $(OBJ_DIR)/%.o		:		$(SRC_DIR)/%.c
-							$(CC) $(CFLAGS) -c $< -o $@
+							$(CC) $(CFLAGS) -c $< -o $@ $(MACROS)
 							@printf "$(YELLOW)%s created $(FACE_ESCUZME)$(COLOR_END)\n" $@
 
 clean				:	

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/08 10:54:24 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:25:00 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ t_coordinates	find_initial_pos(char **map)
 
 int	count_element(char **map, char c)
 {
-	int i;
-	int j;
-	int n;
+	int	i;
+	int	j;
+	int	n;
 
 	i = -1;
 	j = -1;
@@ -78,22 +78,20 @@ int	count_element(char **map, char c)
 	}
 	return (n);
 }
+char	check_assets(char **assets)
+{
+	int i;
+	int fd;
 
-// char	closed(t_coordinates p, char **map, int len_row, int len_col)
-// {
-// 	char	count;
-// 	char	out_y;
-// 	char	out_x;
-
-// 	out_y = 0;
-// 	out_x = 0;
-// 	count = 0;
-// 	if (p.x - 1 < 0)
-// 		out_x = 1;
-// 	if (p.y - 1 < 0)
-// 		out_y = 1;
-	
-// 	if (out_x && p.y < len_row && map[p.x - 1][p.y] == '1') //up. y negatif?
-// 		count++;
-// 	if ( && map[p.x]) //right
-// }
+	i = 0;
+	fd = 0;
+	while (assets[i])
+	{
+		fd = open(assets[i], O_RDONLY);
+		if (fd < 0)
+			return (0);
+		i++;
+		close(fd);
+	}
+	return (1);
+}
