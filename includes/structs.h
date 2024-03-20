@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 17:47:39 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:37:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ typedef struct s_xpm
 	void	*face_r;
 	void	*face_d;
 	void	*face_l;
-	void	*wall_u_d;
-	void	*wall_s;
+	void	*wall;
 	void	*card;
 	void	*heli;
 	void	*ground;

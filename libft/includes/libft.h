@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:01:44 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 17:45:24 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:04:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void				free_arrs(void **arrs);
 void				close_handler(int size, ...);
 void				free_multiple_arrs(int n, ...);
 void				print_and_exit(char *msg);
+void				print_strs(char **strs);
+void				free_and_quit(char *msg, char **strs);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);

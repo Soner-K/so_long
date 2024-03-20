@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 17:10:54 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:48:38 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	check_map_elements(char **map, int i, int j)
 		free_and_quit("Exit not found", map);
 }
 // /_\ GERER LES ECHECS D'ALLOC. Leaks potentiels ici
-char	**parse_map(char *file, int i) //changer le nom pr + de clarte
+char	**create_map(char *file, int i) //changer le nom pr + de clarte
 {
 	char	**map;
 	char	**map_cp;
@@ -155,10 +155,11 @@ char	**parse_map(char *file, int i) //changer le nom pr + de clarte
 		return (map);
 	if (i == 0)
 	{
-		map_cp = parse_map(file, 1);
+		map_cp = create_map(file, 1);
 		if (!map_cp)
 			return (NULL); //necessaire? si map_cp null, alors exit ds appelant
 	}
 	check_for_path(map, map_cp);
-	return (free_arrs((void **) map_cp), map);
+	// return (free_arrs((void **) map_cp), map);
+	return (map);
 }

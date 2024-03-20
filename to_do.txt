@@ -4,4 +4,6 @@ resizing the assets (on canvas)
 
 note : window = lenx *32 + leny *32 or 64
 
-finish map_printing (find a way to efficiently handle image's memory)
+protect the screen size (check if len*64 is bigger than screen)
+open all assets to check if they exist.
+KEY HOOOOOOOOOOOOOOOOOOOOOOk

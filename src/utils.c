@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 15:25:00 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:56:16 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,7 @@ void	set_elements(t_elements *elements)
 	elements->exit = 0;
 }
 
-/**
- * @brief Prints a message to STD_ERROR, frees an array of string
- * and then exit the program.
- * @param msg The message to print.
- * @param strs An array of strings.
- * @returns void.
- */
-void	free_and_quit(char *msg, char **strs)
-{
-	free_arrs((void **)strs);
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(msg, 2);
-	exit(EXIT_FAILURE);
-}
+
 t_coordinates	find_initial_pos(char **map)
 {
 	t_coordinates	p;
@@ -78,6 +65,7 @@ int	count_element(char **map, char c)
 	}
 	return (n);
 }
+
 char	check_assets(char **assets)
 {
 	int i;
@@ -94,4 +82,17 @@ char	check_assets(char **assets)
 		close(fd);
 	}
 	return (1);
+}
+
+void	free_imgs(t_data *mlx, t_xpm *sprites) //what if no img?
+{
+	mlx_destroy_image(mlx->mlx, sprites->face_u);
+	mlx_destroy_image(mlx->mlx, sprites->face_r);
+	mlx_destroy_image(mlx->mlx, sprites->face_d);
+	mlx_destroy_image(mlx->mlx, sprites->face_l);
+	mlx_destroy_image(mlx->mlx, sprites->card);
+	mlx_destroy_image(mlx->mlx, sprites->ground);
+	mlx_destroy_image(mlx->mlx, sprites->heli);
+	mlx_destroy_image(mlx->mlx, sprites->closing);
+	mlx_destroy_image(mlx->mlx, sprites->vest);
 }

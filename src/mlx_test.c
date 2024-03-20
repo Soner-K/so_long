@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:05:32 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 17:21:55 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:31:01 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,24 @@ typedef struct s_win
 // 	mlx_new_image
 // }
 
-int	main(void)
-{
-	t_win	mlx;
-	// void	*ptr;
+// int	main(void)
+// {
+// 	t_win	mlx;
+// 	// void	*ptr;
 	
-	mlx.mlx_ptr = mlx_init();
-	printf("%d", NB_SPRITES);
-	// if (!mlx.mlx_ptr)
-	// 	exit(-1);
-	// mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1920, 1080, "ftg");
-	// if (!mlx.win_ptr)
-	// 	return (mlx_destroy_display(mlx.mlx_ptr), free(mlx.mlx_ptr),
-	// 		exit(EXIT_FAILURE), 1);
-	// ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "assets/xpm/face_up.xpm", &mlx.x, &mlx.y);
-	// mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, ptr, 0, 0);
-	// free(ptr);
-	// mlx_loop(mlx.mlx_ptr);
-}
+// 	mlx.mlx_ptr = mlx_init();
+// 	printf("%d", NB_SPRITES);
+// 	// if (!mlx.mlx_ptr)
+// 	// 	exit(-1);
+// 	// mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1920, 1080, "ftg");
+// 	// if (!mlx.win_ptr)
+// 	// 	return (mlx_destroy_display(mlx.mlx_ptr), free(mlx.mlx_ptr),
+// 	// 		exit(EXIT_FAILURE), 1);
+// 	// ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "assets/xpm/face_up.xpm", &mlx.x, &mlx.y);
+// 	// mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, ptr, 0, 0);
+// 	// free(ptr);
+// 	// mlx_loop(mlx.mlx_ptr);
+// }
 
 // typedef struct	s_data {
 // 	void	*img;

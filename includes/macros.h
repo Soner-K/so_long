@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 17:33:08 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:36:30 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@
 # define CARD "assets/xpm/card.xpm"
 # define GROUND "assets/xpm/ground.xpm"
 # define HELICOPTER "assets/xpm/helicopter.xpm"
-# define WALL_SIDES "assets/xpm/spikes_sides.xpm"
-# define WALL_UP_DOWN "assets/xpm/spikdes_up_down.xpm"
+# define TRASH_BIN	"assets/xpm/trash_bin.xpm"
 # define YELLOW_VEST "assets/xpm/yellow_vest.xpm"
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
 
 #endif

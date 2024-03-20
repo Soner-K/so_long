@@ -21,7 +21,8 @@ FILES				=		test.c \
 							utils.c \
 							flood_fill.c \
 							mlx_test.c \
-							# to_screen.c \
+							set_map.c \
+							utils2.c \
 
 MAPS				:=		maps/bad_extension.txt \
 							maps/empty.ber\
