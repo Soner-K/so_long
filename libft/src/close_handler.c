@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:56:34 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/16 19:03:47 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:46:01 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	close_handler(int size, ...)
 	while (size--)
 	{
 		fd = va_arg(arg, int);
-		if (fd >= 0)
+		if (fd > 0)
 			close(fd);
 	}
 	va_end(arg);

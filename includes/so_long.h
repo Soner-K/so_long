@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 15:46:50 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:02:58 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_coordinates	find_initial_pos(char **map);
 int				count_element(char **map, char c);
 // void			flood_fill(char **map_cp, int x, int y);
 void			check_for_path(char **map, char **map_cp);
-char			check_assets(char **assets);
+void			check_assets(char bonus, int i, int f[NB_ASSETS]);
 void			set_map(t_data *mlx, char **map);
 void			put_element(t_data *mlx, char *file, int x, int y);
-t_coordinates	screen_size(char **map);
+t_coordinates	screen_size(t_data *mlx, char **map);
 #endif

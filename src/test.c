@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:19:36 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 19:08:20 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:05:17 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int	main(int ac, char **av)
 {
 	t_data	mlx;
 	t_coordinates sizes;
+	int			f[NB_ASSETS];
 	char **map;
 
 	if (ac != 2)
 		print_and_exit("petit con");
+	check_assets(1, -1, f);
 	map = create_map(av[1], 0);
-	sizes = screen_size(map);
 	mlx.mlx = mlx_init();
+	sizes = screen_size(&mlx, map);
 	if (!mlx.mlx)
 		print_and_exit("AAAAAAAA");
 	mlx.win = mlx_new_window(mlx.mlx, sizes.x, sizes.y, "ttt");

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:01:44 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 14:04:33 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:41:36 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					find_len_strs(char **strs);
 int					count_lines_fd(char *path);
+int					sum_numbers(int n, ...);
 
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);

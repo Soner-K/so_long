@@ -50,9 +50,12 @@ OBJ					=		$(addprefix $(OBJ_DIR)/,$(FILES:.c=.o))
 CC					=		cc
 CFLAGS				=		-Wall -Wextra -Werror -g3 -I includes
 
-XPM 				:=		"$(shell find assets/xpm -type f)"
-NB_XPM				:=		$(shell find assets/xpm -type f | wc -l)			
-MACROS 				:=		-DXPM_FILES="\$(XPM)\" -DNB_SPRITES=$(NB_XPM)
+LENGTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$1}')		
+WIDTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$2}')
+# NB_SPRITES			:=		$(shell find assets/xpm -type f | wc -l)
+FILES_SPRITES		:=		"$(shell find assets/xpm -type f)"
+
+MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DASSETS="\$(FILES_SPRITES)\" 
 
 all					:		$(NAME)
 
@@ -110,10 +113,6 @@ files_out			:		$(NAME) $(MAPS)
 								./so_long $$map; \
 							done
 							@echo "$(LBLUE)Done !$(COLOR_END)"
-
-norm				:
-							norminette $(SRC)
-							norminette -R CheckDefine $(HEADERS)
 
 .PHONY				: 		all clean fclean re files_mem files_out
 

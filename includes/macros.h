@@ -6,35 +6,30 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 19:36:30 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:24:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
-# ifndef XPM_FILES
-#  define XPM_FILES "ouat"
+# ifndef WIDTH
+#  define WIDTH 800
 # endif
 
-# ifndef NB_SPRITES
-#  define NB_SPRITES 0
+# ifndef LENGTH
+#  define LENGTH 1000
 # endif
 
-// typedef enum
-// {
-// 	FACE_U,
-// 	CARD,
-// 	FACE_D,
-// 	FACE_L,
-// 	FACE_R,
-// 	GROUND,
-// 	HELICOPTER,
-// 	WALL_SIDES,
-// 	WALL_UP_DOWN,
-// 	YELLOW_VEST
-// }	t_files
+# ifndef ASSETS
+# define ASSETS "Error\n"
+#endif
 
+// #ifndef NB_ASSETS
+// # define NB_ASSETS 0
+// #endif
+
+# define NB_ASSETS 9
 # define TRUE 1
 # define FALSE 0
 # define WALL '1'

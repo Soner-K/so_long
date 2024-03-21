@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 18:56:16 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:51:51 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ int	count_element(char **map, char c)
 	return (n);
 }
 
-char	check_assets(char **assets)
-{
-	int i;
-	int fd;
+// char	check_assets(char **assets)
+// {
+// 	int i;
+// 	int fd;
 
-	i = 0;
-	fd = 0;
-	while (assets[i])
-	{
-		fd = open(assets[i], O_RDONLY);
-		if (fd < 0)
-			return (0);
-		i++;
-		close(fd);
-	}
-	return (1);
-}
+// 	i = 0;
+// 	fd = 0;
+// 	while (assets[i])
+// 	{
+// 		fd = open(assets[i], O_RDONLY);
+// 		if (fd < 0)
+// 			return (0);
+// 		i++;
+// 		close(fd);
+// 	}
+// 	return (1);
+// }
 
 void	free_imgs(t_data *mlx, t_xpm *sprites) //what if no img?
 {
@@ -93,6 +93,6 @@ void	free_imgs(t_data *mlx, t_xpm *sprites) //what if no img?
 	mlx_destroy_image(mlx->mlx, sprites->card);
 	mlx_destroy_image(mlx->mlx, sprites->ground);
 	mlx_destroy_image(mlx->mlx, sprites->heli);
-	mlx_destroy_image(mlx->mlx, sprites->closing);
+	mlx_destroy_image(mlx->mlx, sprites->wall);
 	mlx_destroy_image(mlx->mlx, sprites->vest);
 }
