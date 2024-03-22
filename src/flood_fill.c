@@ -6,12 +6,17 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/12 17:07:26 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:55:47 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief
+ * @param
+ * @returns
+ */
 static void	flood_fill(char **map_cp, int x, int y)
 {
 	static int	col;

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/21 15:24:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:55:28 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # endif
 
 # ifndef ASSETS
-# define ASSETS "Error\n"
-#endif
+#  define ASSETS "Error\n"
+# endif
 
 // #ifndef NB_ASSETS
 // # define NB_ASSETS 0
@@ -37,6 +37,9 @@
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
 # define EXIT 'E'
+# define ENNEMY 'V'
+# define WRONG_ELEMENT "str[i] != WALL &&str[i] != EMPTY &&str[i] != COLLECTIBLE \
+&&str[i] != PLAYER &&str[i] != EXIT &&str[i] != ENNEMY &&str[i] != '\n'"
 # define MKO "Allocation issue"
 # define TOO_MANY_EXIT -1
 # define TOO_MANY_POS -2
@@ -47,7 +50,7 @@
 # define CARD "assets/xpm/card.xpm"
 # define GROUND "assets/xpm/ground.xpm"
 # define HELICOPTER "assets/xpm/helicopter.xpm"
-# define TRASH_BIN	"assets/xpm/trash_bin.xpm"
+# define TRASH_BIN "assets/xpm/trash_bin.xpm"
 # define YELLOW_VEST "assets/xpm/yellow_vest.xpm"
 # define W_KEY 119
 # define A_KEY 97
