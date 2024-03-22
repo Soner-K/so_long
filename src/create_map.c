@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 11:37:39 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:06:00 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ static void	check_map_elements(char **map, int i, int j, char check)
 		free_and_quit("Exit not found", map);
 }
 
-char	**create_map(char *file, int i)
+char	**create_map(char *file, char i)
 {
 	char	**map;
 	char	**map_cp;

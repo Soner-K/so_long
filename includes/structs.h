@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 19:37:26 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:11:56 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	char	**map;
 }			t_data;
 
 typedef struct s_xpm

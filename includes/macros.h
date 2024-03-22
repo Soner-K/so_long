@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 09:55:28 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:21:50 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 #  define ASSETS "Error\n"
 # endif
 
+# ifndef BONUS
+# define BONUS -1
+# endif
+
 // #ifndef NB_ASSETS
 // # define NB_ASSETS 0
 // #endif
@@ -38,8 +42,6 @@
 # define PLAYER 'P'
 # define EXIT 'E'
 # define ENNEMY 'V'
-# define WRONG_ELEMENT "str[i] != WALL &&str[i] != EMPTY &&str[i] != COLLECTIBLE \
-&&str[i] != PLAYER &&str[i] != EXIT &&str[i] != ENNEMY &&str[i] != '\n'"
 # define MKO "Allocation issue"
 # define TOO_MANY_EXIT -1
 # define TOO_MANY_POS -2
@@ -56,5 +58,6 @@
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
+# define VALID_KEY 119 || 97 || 115 || 100
 
 #endif

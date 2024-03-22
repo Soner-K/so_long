@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 11:55:31 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:21:56 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,41 @@
 
 # include "libs.h"
 
-// 							--> create_map.c
+// 								--> create_map.c
+
 /**
  * @brief Creates the map, from a .ber file, and checks its validity.
- * @param file 
- * @param i Acts as an incrementer.
+ * @param file
+ * @param i Acts as a binary (in first call, i is 0).
  * @returns The map if the file is valid. Exits the program otherwise
  * (through the other functions).
  */
-char			**create_map(char *path, int i);
+char			**create_map(char *path, char i);
 
+//								--> events.c
 
+/**
+ * @brief
+ * @param
+ * @returns
+ */
+int				player_movement(int keyhook, t_data *mlx);
 
-// 							--> parse_map.c
+//								--> flood_fill.c
+
+/**
+ * @brief Checks if it is possible to reach all collectibles
+ * and the exit in a map.
+ * @param map An array of strings, containing each line of the .ber file
+ * acting as the map.
+ * @param map_cp A copy of map.
+ * @returns void. Exits the program and frees map and map_cp if a valid
+ * path doesn't exist.
+ */
+void			check_for_path(char **map, char **map_cp);
+
+// 								--> parse_map.c
+
 /**
  * @brief Transforms a string into a map array.
  * @param path The path to the map's file.
@@ -42,8 +64,31 @@ char			**ber_to_map(char *path);
  */
 void			check_if_ber(char *file);
 
+//								--> set_map.c
+
+/**
+ * @brief Prints the map to the screen.
+ * @param mlx Adress of a structure containing a pointer to the mlx's adress
+ * and the window's adress.
+ * @param map An array of strings, containing each line of the .ber file
+ * acting as the map.
+ * @returns void.
+ */
+void			set_map(t_data *mlx, char **map);
+
+/**
+ * @brief Puts one element to the window.
+ * @param mlx Adress of a structure containing a pointer to the mlx's adress
+ * and the window's adress.
+ * @param file The xpm file corresponding to the character of the map.
+ * @param x Position in the row.
+ * @param y Position in the column.
+ * @returns void.
+ */
+void			put_element(t_data *mlx, char *file, int x, int y);
 
 //								--> utils.c
+
 /**
  * @brief Initialize the elements of a structure.
  * @param elements An adress of a structure containing the number of times
@@ -61,7 +106,7 @@ void			set_elements(t_elements *elements);
 t_coordinates	find_initial_pos(char **map);
 
 /**
- * @brief Counts a the number of times a given element appears in the map.
+ * @brief Counts the number of times a given element appears in the map.
  * @param map An array of strings, containing each line of the .ber file
  * acting as the map.
  * @param c The element to count.
@@ -70,22 +115,35 @@ t_coordinates	find_initial_pos(char **map);
 int				count_element(char **map, char c);
 
 /**
- * @brief Frees the pointers to the images' files.
+ * @brief Frees mlx, window and images.
  * @param mlx Adress of a structure containing a pointer to the mlx's adress
  * and the window's adress.
  * @param sprites Adress of a structure containing pointers to all the images'
  * files.
- * @param bonus A boolean variable to check if the program was launched
- * with bonuses (bonus == 1) or not.
  * @returns void.
  */
-void			free_imgs(t_data *mlx, t_xpm *sprites, char bonus);
+void			free_mlx(t_data *mlx, t_xpm *sprites);
 
+/**
+ * @brief Checks if all the xpm files needed for the game exist
+ * and can be opened.
+ * @param i Acts as an incrementer.
+ * @param f An array of size NB_ASSETS to store all the fd of the opened files.
+ * @returns void. Exits the program if at least one file can't be opened.
+ */
+void			check_assets(int i, int f[NB_ASSETS]);
 
+//								--> utils2.c
 
-void			check_for_path(char **map, char **map_cp);
-void			check_assets(char bonus, int i, int f[NB_ASSETS]);
+/**
+ * @brief Returns the screen size needed to represent a given map,
+ * while checking if the map isn'too big for the screen's size.
+ * @param mlx Adress of a structure containing a pointer to the mlx's adress
+ * and the window's adress.
+ * @param map An array of strings, containing each line of the .ber file
+ * acting as the map.
+ * @returns The length and width needed to represent the map in the screen.
+ * Exits the program if the map is too big for the screen.
+ */
 t_coordinates	screen_size(t_data *mlx, char **map);
-void			set_map(t_data *mlx, char **map);
-void			put_element(t_data *mlx, char *file, int x, int y);
 #endif

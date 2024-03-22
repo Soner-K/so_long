@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:19:36 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/21 16:05:17 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:21:37 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@ int	main(int ac, char **av)
 	t_data	mlx;
 	t_coordinates sizes;
 	int			f[NB_ASSETS];
+	t_coordinates	pos;
 	char **map;
 
 	if (ac != 2)
 		print_and_exit("petit con");
-	check_assets(1, -1, f);
+	check_assets(-1, f);
 	map = create_map(av[1], 0);
 	mlx.mlx = mlx_init();
 	sizes = screen_size(&mlx, map);
+	pos = find_initial_pos(map);
 	if (!mlx.mlx)
 		print_and_exit("AAAAAAAA");
 	mlx.win = mlx_new_window(mlx.mlx, sizes.x, sizes.y, "ttt");
@@ -57,12 +59,14 @@ int	main(int ac, char **av)
 	// put_element(&mlx, FACE_D, 1, 3);
 	// put_element(&mlx, FACE_D, 1 + 32, 3 + 32);
 	set_map(&mlx, map);
+	mlx_key_hook(mlx.win, &player_movement, &mlx);
 	mlx_loop(mlx.mlx);
-	// print_strs(map);
-	// free_arrs((void **)map);
-	// mlx_destroy_window(mlx.mlx, mlx.win);
-	// mlx_destroy_display(mlx.mlx);
-	// free(mlx.mlx);
+	print_strs(map);
+	free_arrs((void **)map);
+	mlx_destroy_window(mlx.mlx, mlx.win);
+	mlx_destroy_display(mlx.mlx);
+	printf("bonus is %d\n", BONUS);
+	free(mlx.mlx);
 }
 
 // Function to handle key presses

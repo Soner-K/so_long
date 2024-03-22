@@ -6,13 +6,23 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:35:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/21 14:41:14 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:47:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_xpm_files(t_data *mlx, t_xpm *sprites, int x, int y)
+/**
+ * @brief Puts all the xpm files to images.
+ * @param mlx Adress of a structure containing a pointer to the mlx's adress
+ * and the window's adress. 
+ * @param sprites Adress of a structure containing pointers to all the images'
+ * files.
+ * @param x Length in pixels.
+ * @param y Width in pixels.
+ * @returns void.
+ */
+static void	set_xpm_files(t_data *mlx, t_xpm *sprites, int x, int y)
 {
 	sprites->face_u = mlx_xpm_file_to_image(mlx->mlx, FACE_U, &x, &y);
 	sprites->face_r = mlx_xpm_file_to_image(mlx->mlx, FACE_R, &x, &y);
@@ -22,11 +32,23 @@ void	set_xpm_files(t_data *mlx, t_xpm *sprites, int x, int y)
 	sprites->ground = mlx_xpm_file_to_image(mlx->mlx, GROUND, &x, &y);
 	sprites->heli = mlx_xpm_file_to_image(mlx->mlx, HELICOPTER, &x, &y);
 	sprites->wall = mlx_xpm_file_to_image(mlx->mlx, TRASH_BIN, &x, &y);
-	sprites->vest = mlx_xpm_file_to_image(mlx->mlx, YELLOW_VEST, &x, &y);
+	if (BONUS)
+		sprites->vest = mlx_xpm_file_to_image(mlx->mlx, YELLOW_VEST, &x, &y);
 }
 
-char	*find_file(char **map, int x, int y)
-{
+/**
+ * @brief Finds the corresponding xpm file depending
+ * on the encountered element.
+ * @param map An array of strings, containing each line of the .ber file
+ * acting as the map.
+ * @param x Position in the row.
+ * @param y Position in the column.
+ * @returns The path towards the xpm file. NULL if file isn't found 
+ *(note : returning null isn't possible, the presence of the files and
+ )
+ */
+static char	*find_file(char **map, int x, int y)
+{	
 	if (map[x][y] == EXIT)
 		return (HELICOPTER);
 	if (map[x][y] == COLLECTIBLE)
@@ -37,65 +59,38 @@ char	*find_file(char **map, int x, int y)
 		return (GROUND);
 	if (map[x][y] == WALL)
 		return (TRASH_BIN);
+	if (BONUS && map[x][y] == ENNEMY)
+		return (YELLOW_VEST);
 	return (NULL);
 }
 
-// void	fill_imgs_tab(char *imgs[])
-// {
-// 	imgs[0] = FACE_U;
-// 	imgs[1] = FACE_R;
-// 	imgs[2] = FACE_D;
-// 	imgs[3] = FACE_L;
-// 	imgs[4] = CARD;
-// 	imgs[5] = GROUND;
-// 	imgs[6] = HELICOPTER;
-// 	imgs[7] = WALL_SIDES;
-// 	imgs[8] = WALL_UP_DOWN;
-// 	imgs[9] = YELLOW_VEST;
-// }
-
-// void	init_screen(t_data *mlx, char **map)
-// {
-// 	static int	x;
-// 	static int	y;
-// 	char		*file;
-
-// 	file = find_file(map, x, y);
-// 	put_element(mlx, file, x, y);
-// }
-
-/**
- * @brief Puts one element to the window.
- * @param mlx Structure containing mlx and window pointers.
- * @param file The xpm file corresponding to the character of the map.
- * @param x Position in the row.
- * @param y Position in the column.
- * @returns void.
- */
-void	put_element(t_data *mlx, char *file, int x, int y)//if file null?
+void	put_element(t_data *mlx, char *file, int x, int y) //if file null?
 {
 	static t_xpm	sprites;
 	static int		i;
 
-	if (i == 0)
+	if (i++ == 0)
 		set_xpm_files(mlx, &sprites, 64, 64);
-	i++;
 	if (!ft_strcmp(file, FACE_U))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.face_u, x, y);
-	if (!ft_strcmp(file, FACE_R))
+	else if (!ft_strcmp(file, FACE_R))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.face_r, x, y);
-	if (!ft_strcmp(file, FACE_D))
+	else if (!ft_strcmp(file, FACE_D))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.face_d, x, y);
-	if (!ft_strcmp(file, FACE_L))
+	else if (!ft_strcmp(file, FACE_L))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.face_l, x, y);
-	if (!ft_strcmp(file, CARD))
+	else if (!ft_strcmp(file, CARD))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.card, x, y);
-	if (!ft_strcmp(file, HELICOPTER))
+	else if (!ft_strcmp(file, HELICOPTER))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.heli, x, y);
-	if (!ft_strcmp(file, GROUND))
+	else if (!ft_strcmp(file, GROUND))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.ground, x, y);
-	if (!ft_strcmp(file, TRASH_BIN))
+	else if (!ft_strcmp(file, TRASH_BIN))
 		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.wall, x, y);
+	else if (BONUS && !ft_strcmp(file, YELLOW_VEST))
+		mlx_put_image_to_window(mlx->mlx, mlx->win, sprites.vest, x, y);
+	else
+		free_mlx(mlx, &sprites);
 }
 
 void	set_map(t_data *mlx, char **map)//check for x and y in loop
@@ -113,6 +108,11 @@ void	set_map(t_data *mlx, char **map)//check for x and y in loop
 		while (map[pos_strs.x][++pos_strs.y])
 		{
 			str = find_file(map, pos_strs.x, pos_strs.y);
+			if (!str)
+			{
+				put_element(mlx, NULL, 0, 0);
+				free_and_quit("Issue while putting the map to the screen", map);
+			}
 			put_element(mlx, str, pos_map.y, pos_map.x);
 			pos_map.y += 64;
 		}
@@ -121,26 +121,3 @@ void	set_map(t_data *mlx, char **map)//check for x and y in loop
 		pos_map.x += 64;
 	}
 }
-
-// int	main(int ac, char **av)
-// {
-// 	int x;
-// 	int y;
-// 	char *str;
-// 	char **map;
-
-// 	x = -1;
-// 	y = -1;
-// 	map = create_map(av[1], 0);
-// 	(void)ac;
-// 	while (map[++x])
-// 	{
-// 		while (map[x][++y])
-// 		{
-// 			str = find_file(map, x, y);
-// 			printf("at map[%d][%d] is %s\n", x, y, str);
-// 		}
-// 		y = -1;
-// 	}
-// 	free_arrs((void **)map);
-// }

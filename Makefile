@@ -23,6 +23,7 @@ FILES				=		test.c \
 							mlx_test.c \
 							set_map.c \
 							utils2.c \
+							events.c \
 
 MAPS				:=		maps/bad_extension.txt \
 							maps/empty.ber\
@@ -52,10 +53,14 @@ CFLAGS				=		-Wall -Wextra -Werror -g3 -I includes
 
 LENGTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$1}')		
 WIDTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$2}')
-# NB_SPRITES			:=		$(shell find assets/xpm -type f | wc -l)
+IS_BONUS			:=		0
+ifeq (bonus, $(filter bonus, $(MAKECMDGOALS)))
+	IS_BONUS		=		1
+endif
+
 FILES_SPRITES		:=		"$(shell find assets/xpm -type f)"
 
-MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DASSETS="\$(FILES_SPRITES)\" 
+MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DASSETS="\$(FILES_SPRITES)\" -DBONUS=$(IS_BONUS)
 
 all					:		$(NAME)
 
@@ -75,7 +80,7 @@ $(OBJ_DIR)			:
 							mkdir -p $@
 
 $(OBJ_DIR)/%.o		:		$(SRC_DIR)/%.c
-							$(CC) $(CFLAGS) -c $< -o $@ $(MACROS)
+							$(CC) $(CFLAGS) -c $< -o $@ $(MACROS) 
 							@printf "$(YELLOW)%s created $(FACE_ESCUZME)$(COLOR_END)\n" $@
 
 clean				:	

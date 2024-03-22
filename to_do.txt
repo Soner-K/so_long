@@ -1,9 +1,4 @@
-handling pontential leaks in map creation (parse_map)
-Storing width and length of screen into macros
-resizing the assets (on canvas)
 
-note : window = lenx *32 + leny *32 or 64
-
-protect the screen size (check if len*64 is bigger than screen)
-open all assets to check if they exist.
 KEY HOOOOOOOOOOOOOOOOOOOOOOk
+
+redo the player's imgs (only moving the face, not the ground too)
