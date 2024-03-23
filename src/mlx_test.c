@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:05:32 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/20 12:31:01 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/23 11:32:41 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,64 @@ typedef struct s_win
 	int		y;
 
 }			t_win;
+
+
+
+// int	close_it(int keycode, t_data *vars)
+// {
+// 	// mlx_destroy_window(vars->mlx, vars->win);
+// 	printf("%d\n", keycode);
+// 	(void) vars;
+// 	return (0);
+// }
+
+// int	main(void)
+// {
+// 	t_data	vars;
+
+// 	vars.mlx = mlx_init();
+// 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+// 	mlx_hook(vars.win, 2, 1L<<0, close_it, &vars);
+// 	mlx_loop(vars.mlx);
+// }
+
+int	keypressed(int keycode, t_data *param)
+{
+	printf("keycode is %d\n", keycode);
+	(void) param;
+	return (0);
+}
+
+int main(void)
+{
+	t_data mlx;
+
+	mlx.mlx = mlx_init();
+	mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "ttt");
+	mlx_hook(mlx.win, KeyPress, W_KEY, keypressed, &mlx);
+	mlx_loop(mlx.mlx);
+}
+
+
+// int	keypressed(int keycode, t_data *param)
+// {
+// 	printf("Keycode is %d\n", keycode);
+// 	(void)param;  // Avoid unused parameter warning
+// 	return (0);
+// }
+
+// int main(void)
+// {
+// 	t_data mlx;
+
+// 	mlx.mlx = mlx_init();
+// 	mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "ttt");
+// 	mlx_hook(mlx.win, KeyPress, 1L << 0, keypressed, &mlx);
+// 	mlx_loop(mlx.mlx);
+
+// 	return (0);
+// }
+
 
 // void	ft_put_pixel(t_win *win, int x, int y, int color)
 // {
