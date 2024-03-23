@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 16:21:56 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/23 13:52:34 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,4 +146,6 @@ void			check_assets(int i, int f[NB_ASSETS]);
  * Exits the program if the map is too big for the screen.
  */
 t_coordinates	screen_size(t_data *mlx, char **map);
+
+int				player_movement(int key, t_data *data);
 #endif

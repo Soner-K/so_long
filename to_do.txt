@@ -2,3 +2,5 @@
 KEY HOOOOOOOOOOOOOOOOOOOOOOk
 
 redo the player's imgs (only moving the face, not the ground too)
+
+modify nb assets to be 8 if is_bonus == 0 (makefile)

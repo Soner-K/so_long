@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 17:21:50 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/23 13:36:57 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
-# define VALID_KEY 119 || 97 || 115 || 100
+# define VALID_KEY key == 119 || key == 97 || key == 115 || key == 100
 
 #endif

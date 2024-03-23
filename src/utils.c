@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 15:08:35 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:45:20 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	check_assets(int i, int f[NB_ASSETS])
 	f[7] = open(TRASH_BIN, O_RDONLY);
 	if (BONUS)
 		f[8] = open(YELLOW_VEST, O_RDONLY);
-	while (++i < NB_ASSETS)
+	while (++i < 8)
 	{
 		if (f[i] < 0)
 		{

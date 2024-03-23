@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:05:32 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 11:32:41 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:26:47 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ typedef struct s_win
 // 	mlx_loop(vars.mlx);
 // }
 
-int	keypressed(int keycode, t_data *param)
-{
-	printf("keycode is %d\n", keycode);
-	(void) param;
-	return (0);
-}
+// int	keypressed(int keycode, t_data *param)
+// {
+// 	printf("keycode is %d\n", keycode);
+// 	(void) param;
+// 	return (0);
+// }
 
-int main(void)
-{
-	t_data mlx;
+// int main(void)
+// {
+// 	t_data mlx;
 
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "ttt");
-	mlx_hook(mlx.win, KeyPress, W_KEY, keypressed, &mlx);
-	mlx_loop(mlx.mlx);
-}
+// 	mlx.mlx = mlx_init();
+// 	mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "ttt");
+// 	mlx_hook(mlx.win, KeyPress, W_KEY, keypressed, &mlx);
+// 	mlx_loop(mlx.mlx);
+// }
 
 
 // int	keypressed(int keycode, t_data *param)

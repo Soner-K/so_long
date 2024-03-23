@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:39:14 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 11:41:48 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:46:34 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	check_empty(char *str)
 	int	i;
 
 	i = -1;
+	if (!str)
+		print_and_exit("Empty file");
 	while (str[++i])
 	{
 		if (str[i] == '\n' && i != 0 && str[i - 1] == '\n')

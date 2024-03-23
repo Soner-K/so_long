@@ -57,6 +57,8 @@ IS_BONUS			:=		0
 ifeq (bonus, $(filter bonus, $(MAKECMDGOALS)))
 	IS_BONUS		=		1
 endif
+N_ASSETS			:=		9
+
 
 FILES_SPRITES		:=		"$(shell find assets/xpm -type f)"
 
