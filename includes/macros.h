@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 13:36:57 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:54:15 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # endif
 
 # ifndef BONUS
-# define BONUS -1
+#  define BONUS -1
 # endif
 
 // #ifndef NB_ASSETS
@@ -45,10 +45,10 @@
 # define MKO "Allocation issue"
 # define TOO_MANY_EXIT -1
 # define TOO_MANY_POS -2
-# define FACE_U "assets/xpm/face_up.xpm"
-# define FACE_R "assets/xpm/face_right.xpm"
-# define FACE_D "assets/xpm/face_down.xpm"
-# define FACE_L "assets/xpm/face_left.xpm"
+# define PLAYER_U "assets/xpm/player_up.xpm"
+# define PLAYER_R "assets/xpm/player_right.xpm"
+# define PLAYER_D "assets/xpm/player_down.xpm"
+# define PLAYER_L "assets/xpm/player_left.xpm"
 # define CARD "assets/xpm/card.xpm"
 # define GROUND "assets/xpm/ground.xpm"
 # define HELICOPTER "assets/xpm/helicopter.xpm"
@@ -58,6 +58,6 @@
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
-# define VALID_KEY key == 119 || key == 97 || key == 115 || key == 100
-
+# define ESC_KEY 65307
+# define END_GAME -1
 #endif

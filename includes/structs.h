@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 12:54:01 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:51:52 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,21 @@ typedef struct s_elements
 	int		collectible;
 	int		exit;
 	int		pos;
+	int		ennemy;
 }			t_elements;
 
 typedef struct s_coordinates
 {
-	int x; // line (row)
-	int y; // character (col)
+	int	x;
+	int	y;
 }			t_coordinates;
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*win;
-	char	**map;
-	int		collectibles;
-}			t_data;
 
 typedef struct s_xpm
 {
-	void	*face_u;
-	void	*face_r;
-	void	*face_d;
-	void	*face_l;
+	void	*player_u;
+	void	*player_r;
+	void	*player_d;
+	void	*player_l;
 	void	*wall;
 	void	*card;
 	void	*heli;
@@ -50,4 +43,14 @@ typedef struct s_xpm
 	void	*vest;
 }			t_xpm;
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+	char	**map;
+	int		collectibles;
+	int		x;
+	int		y;
+	t_xpm	*xpm;
+}			t_data;
 #endif

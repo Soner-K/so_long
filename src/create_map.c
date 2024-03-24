@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 12:58:33 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:54:44 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	compare_top_down(char **map)
 		return ;
 	free_and_quit("Issue with top and/or bottom of the map", map);
 }
+
 /**
  * @brief Checks if the sides of the map are even, and closed by walls.
  * @param map An array of strings, containing each line of the .ber file
@@ -103,6 +104,8 @@ static char	check_one_element(char c, t_elements *elements)
 			return (TOO_MANY_POS);
 		return (1);
 	}
+	if (BONUS && c == 'V')
+		return (elements->ennemy++, 1);
 	return (0);
 }
 

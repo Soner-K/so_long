@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 13:52:34 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:42:02 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // 								--> create_map.c
 
 /**
- * @brief Creates the map, from a .ber file, and checks its validity.
- * @param file
- * @param i Acts as a binary (in first call, i is 0).
- * @returns The map if the file is valid. Exits the program otherwise
- * (through the other functions).
+ * @brief Creates the map, from a .ber file, then calls itself again to create
+ * a copy of the map, to check for a valid path.
+ * @param path Path to the map's file.
+ * @param i Acts as a binary (in first call, i is 0, in the second i is  1).
+ * @returns The map if the file is valid. Exits the program otherwise.
  */
 char			**create_map(char *path, char i);
 
@@ -78,8 +78,8 @@ void			set_map(t_data *mlx, char **map);
 
 /**
  * @brief Puts one element to the window.
- * @param mlx Adress of a structure containing a pointer to the mlx's adress
- * and the window's adress.
+ * @param data Adress of a structure containing a pointer to the mlx's adress,
+ * the window's adress, the map array and the number of collectibles.
  * @param file The xpm file corresponding to the character of the map.
  * @param x Position in the row.
  * @param y Position in the column.
@@ -116,13 +116,13 @@ int				count_element(char **map, char c);
 
 /**
  * @brief Frees mlx, window and images.
- * @param mlx Adress of a structure containing a pointer to the mlx's adress
- * and the window's adress.
+ * @param data Adress of a structure containing a pointer to the mlx's adress,
+ * the window's adress, the map array and the number of collectibles.
  * @param sprites Adress of a structure containing pointers to all the images'
  * files.
  * @returns void.
  */
-void			free_mlx(t_data *mlx, t_xpm *sprites);
+void			free_mlx(t_data *data, t_xpm *sprites);
 
 /**
  * @brief Checks if all the xpm files needed for the game exist
@@ -138,14 +138,24 @@ void			check_assets(int i, int f[NB_ASSETS]);
 /**
  * @brief Returns the screen size needed to represent a given map,
  * while checking if the map isn'too big for the screen's size.
- * @param mlx Adress of a structure containing a pointer to the mlx's adress
- * and the window's adress.
+ * @param data Adress of a structure containing a pointer to the mlx's adress,
+ * the window's adress, the map array and the number of collectibles.
  * @param map An array of strings, containing each line of the .ber file
  * acting as the map.
  * @returns The length and width needed to represent the map in the screen.
  * Exits the program if the map is too big for the screen.
  */
-t_coordinates	screen_size(t_data *mlx, char **map);
+t_coordinates	screen_size(t_data *data, char **map);
 
 int				player_movement(int key, t_data *data);
+
+/**
+ * @brief Quits the game and frees all allocated memory.
+ * @param data Adress of a structure containing a pointer to the mlx's adress,
+ * the window's adress, the map array and the number of collectibles..
+ * @returns void.
+ */
+int				end_game(t_data *data);
+
+int				close_game(t_data *data);
 #endif

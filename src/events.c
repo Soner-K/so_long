@@ -6,25 +6,18 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:23:50 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 13:54:02 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:54:57 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// int	player_movement(int keyhook, t_data *mlx)
-// {
-// 	static t_coordinates	pos;
-// 	static int				i;
+void	print_move(void)
+{
+	static int	move;
 
-// 	if (i++ == 0)
-// 		pos = find_initial_pos(mlx->map);
-// 	if (keyhook == W_KEY)
-// 		replace_and_put(mlx, &pos, FACE_U);
-// 	put_element(mlx, FACE_U, pos.y * 64, (--pos.x) * 64);
-// 	else if (keyhook == D_KEY) put_element(mlx, FACE_R, pos.x, pos.y);
-// 	return (1);
-// }
+	ft_printf("%d\n", ++move);
+}
 
 char	check_move(t_data *data, int keycode, t_coordinates *pos)
 {
@@ -33,6 +26,8 @@ char	check_move(t_data *data, int keycode, t_coordinates *pos)
 
 	cp.x = pos->x;
 	cp.y = pos->y;
+	if (keycode == ESC_KEY)
+		return (data->x = cp.x, data->y = cp.y, end_game(data), END_GAME);
 	is_valid = 0;
 	if (keycode == W_KEY && data->map[--cp.x][cp.y] != WALL)
 		is_valid = 1;
@@ -43,7 +38,8 @@ char	check_move(t_data *data, int keycode, t_coordinates *pos)
 	else if (keycode == A_KEY && data->map[cp.x][--cp.y] != WALL)
 		is_valid = 1;
 	if (data->map[cp.x][cp.y] == EXIT && data->collectibles == 0)
-		return (*pos = cp, 2);
+		return (data->x = cp.x, data->y = cp.y, print_move(), end_game(data),
+			END_GAME);
 	else if (data->map[cp.x][cp.y] == EXIT && data->collectibles != 0)
 		return (FALSE);
 	if (is_valid)
@@ -52,9 +48,15 @@ char	check_move(t_data *data, int keycode, t_coordinates *pos)
 		return (FALSE);
 }
 
+// add enemy collision here or in player movement?
 void	replace_and_put(t_data *data, t_coordinates pos, t_coordinates pos_prev,
 		char *file)
 {
+	if (data->map[pos.x][pos.y] == COLLECTIBLE)
+	{
+		data->map[pos.x][pos.y] = EMPTY;
+		data->collectibles--;
+	}
 	put_element(data, GROUND, pos_prev.y * 64, pos_prev.x * 64);
 	put_element(data, file, pos.y * 64, pos.x * 64);
 }
@@ -70,21 +72,23 @@ int	player_movement(int key, t_data *data)
 		pos = find_initial_pos(data->map);
 	pos_cp.x = pos.x;
 	pos_cp.y = pos.y;
-	// if (VALID_KEY)
-	is_valid = check_move(data, key, &pos);
-	// else
-		// return (0);
+	if (key == W_KEY || key == A_KEY || key == S_KEY || key == D_KEY
+		|| key == ESC_KEY)
+		is_valid = check_move(data, key, &pos);
+	else
+		return (0);
 	if (is_valid)
-	{
-		if (key == W_KEY)
-			replace_and_put(data, pos, pos_cp, FACE_U);
-		else if (key == D_KEY)
-			replace_and_put(data, pos, pos_cp, FACE_R);
-		else if (key == S_KEY)
-			replace_and_put(data, pos, pos_cp, FACE_D);
-		else if (key == A_KEY)
-			replace_and_put(data, pos, pos_cp, FACE_L);
-	}
+		print_move();
+	if (BONUS && data->map[pos.x][pos.y] == 'V')
+		close_game(data);
+	if (key == W_KEY)
+		replace_and_put(data, pos, pos_cp, PLAYER_U);
+	else if (key == D_KEY)
+		replace_and_put(data, pos, pos_cp, PLAYER_R);
+	else if (key == S_KEY)
+		replace_and_put(data, pos, pos_cp, PLAYER_D);
+	else if (key == A_KEY)
+		replace_and_put(data, pos, pos_cp, PLAYER_L);
 	return (1);
 }
 // check if removing map[cp.x][cp.y] != 'EXIT' is ok or not

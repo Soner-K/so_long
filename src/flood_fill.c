@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 11:55:47 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:43:01 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_for_path(char **map, char **map_cp)
 	int				x;
 	int				y;
 	t_coordinates	pos;
-	
+
 	x = -1;
 	y = -1;
 	pos = find_initial_pos(map_cp);
@@ -54,7 +54,7 @@ void	check_for_path(char **map, char **map_cp)
 				print_and_exit("No valid path in the map");
 			}
 		}
-			y = -1;
+		y = -1;
 	}
-	free_arrs((void **) map_cp);
+	free_arrs((void **)map_cp);
 }

@@ -20,7 +20,6 @@ FILES				=		test.c \
 							parse_map.c \
 							utils.c \
 							flood_fill.c \
-							mlx_test.c \
 							set_map.c \
 							utils2.c \
 							events.c \
@@ -77,6 +76,8 @@ $(NAME)				:		$(OBJ_DIR) $(OBJ)
 							@echo "$(LYELLOW)Compiling so_long$(COLOR_END)"
 							$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) -Lmlx -lX11 -lXext -lm -o $(NAME)
 							@echo "$(LGREEN)so_long compiled ! Have fun\n$(COLOR_END)"
+
+bonus				:		$(NAME)
 
 $(OBJ_DIR)			:		
 							mkdir -p $@

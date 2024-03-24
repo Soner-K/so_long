@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:44:55 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/22 11:43:20 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:41:31 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ t_coordinates	screen_size(t_data *mlx, char **map)
 		print_and_exit("Map too big");
 	}
 	return (n);
+}
+
+int	end_game(t_data *data)
+{
+	free_mlx(data, data->xpm);
+	return (0);
+}
+
+int	close_game(t_data *data)
+{
+	data->x = 0;
+	data->y = 0;
+	free_mlx(data, data->xpm);
+	return (0);
 }
 
 // void	key_press(t_data *mlx, int key)

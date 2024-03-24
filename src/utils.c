@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/23 12:45:20 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:28:53 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	set_elements(t_elements *elements)
 	elements->collectible = 0;
 	elements->pos = 0;
 	elements->exit = 0;
+	elements->ennemy = 0;
 }
 
 t_coordinates	find_initial_pos(char **map)
@@ -66,33 +67,39 @@ int	count_element(char **map, char c)
 }
 
 // what if no img?
-void	free_mlx(t_data *mlx, t_xpm *sprites)
+void	free_mlx(t_data *data, t_xpm *sprites)
 {
-	mlx_destroy_image(mlx->mlx, sprites->face_u);
-	mlx_destroy_image(mlx->mlx, sprites->face_r);
-	mlx_destroy_image(mlx->mlx, sprites->face_d);
-	mlx_destroy_image(mlx->mlx, sprites->face_l);
-	mlx_destroy_image(mlx->mlx, sprites->card);
-	mlx_destroy_image(mlx->mlx, sprites->ground);
-	mlx_destroy_image(mlx->mlx, sprites->heli);
-	mlx_destroy_image(mlx->mlx, sprites->wall);
+	int	x;
+	int	y;
+
+	x = data->x;
+	y = data->y;
+	mlx_destroy_image(data->mlx, sprites->player_u);
+	mlx_destroy_image(data->mlx, sprites->player_r);
+	mlx_destroy_image(data->mlx, sprites->player_d);
+	mlx_destroy_image(data->mlx, sprites->player_l);
+	mlx_destroy_image(data->mlx, sprites->card);
+	mlx_destroy_image(data->mlx, sprites->ground);
+	mlx_destroy_image(data->mlx, sprites->heli);
+	mlx_destroy_image(data->mlx, sprites->wall);
 	if (BONUS)
-		mlx_destroy_image(mlx->mlx, sprites->vest);
-	if (mlx->win)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		free(mlx->win);
-	}
-	mlx_destroy_display(mlx->mlx);
-	free(mlx);
+		mlx_destroy_image(data->mlx, sprites->vest);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	if (data->map[x][y] == EXIT)
+		ft_putstr_fd("No more social security, congrats !!!\n", 1);
+	free_arrs((void **)data->map);
+	exit(EXIT_SUCCESS);
 }
 
 void	check_assets(int i, int f[NB_ASSETS])
 {
-	f[0] = open(FACE_D, O_RDONLY);
-	f[1] = open(FACE_R, O_RDONLY);
-	f[2] = open(FACE_D, O_RDONLY);
-	f[3] = open(FACE_L, O_RDONLY);
+	f[0] = open(PLAYER_D, O_RDONLY);
+	f[1] = open(PLAYER_R, O_RDONLY);
+	f[2] = open(PLAYER_D, O_RDONLY);
+	f[3] = open(PLAYER_L, O_RDONLY);
 	f[4] = open(CARD, O_RDONLY);
 	f[5] = open(GROUND, O_RDONLY);
 	f[6] = open(HELICOPTER, O_RDONLY);
