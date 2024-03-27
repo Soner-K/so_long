@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 18:51:52 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:48:25 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef struct s_xpm
 	void	*ground;
 	void	*vest;
 }			t_xpm;
+
+typedef struct s_enemies
+{
+	char			up_down;
+	t_coordinates	pos;
+}			t_enemies;
+
 
 typedef struct s_data
 {

@@ -1,10 +1,8 @@
 modify nb assets to be 8 if is_bonus == 0 (makefile)
 
-rethink flood_filling (cant walk on exit, so need to account for that)
---> can work if i can walk on exit, just need to reput it when i move
-(store the adress of exit) but what if i quit the game while on the exit?
-
 do the main
 
-enemy moves
+enemy moves : make them simple
 
+once moves are done, for parsing the map, only need to check around the first
+position of the player. Since the enemies move, coins should be accessible?

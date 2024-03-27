@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:23:50 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 12:04:24 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:37:38 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	check_move(t_data *data, int keycode, t_coordinates *pos)
 	cp.x = pos->x;
 	cp.y = pos->y;
 	if (keycode == ESC_KEY)
-		return (data->x = cp.x, data->y = cp.y, end_game(data), END_GAME);
+		return (close_game(data), END_GAME);
 	is_valid = 0;
 	if (keycode == W_KEY && data->map[--cp.x][cp.y] != WALL)
 		is_valid = 1;
@@ -40,32 +40,10 @@ char	check_move(t_data *data, int keycode, t_coordinates *pos)
 	if (data->map[cp.x][cp.y] == EXIT && data->collectibles == 0)
 		return (data->x = cp.x, data->y = cp.y, print_move(), end_game(data),
 			END_GAME);
-	// else if (data->map[cp.x][cp.y] == EXIT && data->collectibles != 0)
-	// 	return (FALSE);
 	if (is_valid)
 		return (*pos = cp, TRUE);
 	else
 		return (FALSE);
-}
-
-void	replace_and_put(t_data *data, t_coordinates pos, t_coordinates pos_prev,
-		char *file)
-{
-	if (data->map[pos.x][pos.y] == COLLECTIBLE)
-	{
-		data->map[pos.x][pos.y] = EMPTY;
-		data->collectibles--;
-	}
-	if (BONUS && data->map[pos.x][pos.y] == ENEMY)
-	{
-		ft_putendl_fd("The people won.", 1);
-		close_game(data);
-	}
-	if (data->map[pos_prev.x][pos_prev.y] == EXIT)
-		put_element(data, HELICOPTER, pos_prev.y * 64, pos_prev.x * 64);
-	else
-		put_element(data, GROUND, pos_prev.y * 64, pos_prev.x * 64);
-	put_element(data, file, pos.y * 64, pos.x * 64);
 }
 
 int	player_movement(int key, t_data *data)
@@ -94,6 +72,8 @@ int	player_movement(int key, t_data *data)
 		replace_and_put(data, pos, pos_cp, PLAYER_D);
 	else if (key == A_KEY)
 		replace_and_put(data, pos, pos_cp, PLAYER_L);
+	if (BONUS)
+		enemy_move(data);
 	return (1);
 }
 // check if removing map[cp.x][cp.y] != 'EXIT' is ok or not

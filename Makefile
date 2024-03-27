@@ -23,6 +23,7 @@ FILES				=		test.c \
 							set_map.c \
 							utils2.c \
 							events.c \
+							enemy_move.c \
 
 MAPS				:=		maps/bad_extension.txt \
 							maps/empty.ber\

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 12:03:35 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:06:11 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@
 # define NB_ASSETS 9
 # define TRUE 1
 # define FALSE 0
+# define LEFT 1
+# define UP_DOWN 1
+# define LEFT_RIGHT 2
+# define RIGHT 3
+# define DOWN 4
 # define WALL '1'
 # define EMPTY '0'
 # define COLLECTIBLE 'C'

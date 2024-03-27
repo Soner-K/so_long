@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 11:22:01 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:38:10 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,19 @@ int				player_movement(int keyhook, t_data *mlx);
  * @returns void. Exits the program and frees map and map_cp if a valid
  * path doesn't exist.
  */
-void			check_for_path(char **map, char **map_cp);
+void			check_for_path_first(char **map, char **map_cp);
+
+/**
+ * @brief This function is used on par with check_for_path_first in order
+ * to check if a valid path exists in the map, considering the enemies'
+ * positions.
+ * @param map An array of strings, containing each line of the .ber file
+ * acting as the map.
+ * @param map_cp A copy of map.
+ * @returns void. Exits the program and frees map and map_cp if a valid
+ * path doesn't exist.
+ */
+void			check_for_path_bonus(char **map, char **map_cp);
 
 // 								--> parse_map.c
 
@@ -79,13 +91,14 @@ void			set_map(t_data *mlx, char **map);
 /**
  * @brief Puts one element to the window.
  * @param data Adress of a structure containing a pointer to the mlx's adress,
- * the window's adress, the map array and the number of collectibles.
+ * the window's adress, the map array, the number of collectibles and the
+ * number of enemies.
  * @param file The xpm file corresponding to the character of the map.
  * @param x Position in the row.
  * @param y Position in the column.
  * @returns void.
  */
-void			put_element(t_data *mlx, char *file, int x, int y);
+void			put_element(t_data *data, char *file, int x, int y);
 
 //								--> utils.c
 
@@ -118,7 +131,8 @@ int				count_element(char **map, char c);
 /**
  * @brief Frees mlx, window and images.
  * @param data Adress of a structure containing a pointer to the mlx's adress,
- * the window's adress, the map array and the number of collectibles.
+ * the window's adress, the map array, the number of collectibles and the
+ * number of enemies.
  * @param sprites Adress of a structure containing pointers to all the images'
  * files.
  * @returns void.
@@ -140,7 +154,8 @@ void			check_assets(int i, int f[NB_ASSETS]);
  * @brief Returns the screen size needed to represent a given map,
  * while checking if the map isn'too big for the screen's size.
  * @param data Adress of a structure containing a pointer to the mlx's adress,
- * the window's adress, the map array and the number of collectibles.
+ * the window's adress, the map array, the number of collectibles and the
+ * number of enemies.
  * @param map An array of strings, containing each line of the .ber file
  * acting as the map.
  * @returns The length and width needed to represent the map in the screen.
@@ -148,6 +163,14 @@ void			check_assets(int i, int f[NB_ASSETS]);
  */
 t_coordinates	screen_size(t_data *data, char **map);
 
+/**
+ * @brief Checks the used key and, if it is a valid key, moves the player.
+ * @param key The key that was pressed.
+ * @param data Adress of a structure containing a pointer to the mlx's adress,
+ * the window's adress, the map ar, the number of collectibles and the
+ * number of enemies.
+ * @returns
+ */
 int				player_movement(int key, t_data *data);
 
 /**
@@ -158,5 +181,18 @@ int				player_movement(int key, t_data *data);
  */
 int				end_game(t_data *data);
 
+/**
+ * @brief Quits the game for the following events : esc key was pressed
+ * or the window is closed.
+ * @param data Adress of a structure containing a pointer to the mlx's adress,
+ * the window's adress, the map array and the number of collectibles..
+ * @returns void.
+ */
 int				close_game(t_data *data);
+
+void			enemy_move(t_data *data);
+
+// t_coordinates	*enemy_tab(t_data *data);
+void			replace_and_put(t_data *data, t_coordinates pos,
+					t_coordinates pos_prev, char *file);
 #endif

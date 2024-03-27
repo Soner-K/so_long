@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 18:54:44 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:58:56 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,22 +129,24 @@ static void	check_map_elements(char **map, int i, int j, char check)
 		{
 			check = check_one_element(map[i][j], &elements);
 			if (check == 0)
-				free_and_quit("Unrecognized element in map", map);
+				free_and_quit("Unrecognized element in map.", map);
 			if (check == TOO_MANY_EXIT)
-				free_and_quit("More than one exit found", map);
+				free_and_quit("More than one exit found.", map);
 			if (check == TOO_MANY_POS)
-				free_and_quit("More than one initial position found", map);
+				free_and_quit("More than one initial position found.", map);
 			if (!ft_strlen(map[i]))
-				free_and_quit("Empty space in map", map);
+				free_and_quit("Empty space in map.", map);
 		}
 		j = 0;
 	}
 	if (elements.collectible < 1)
-		free_and_quit("Not enough collectibles", map);
+		free_and_quit("Not enough collectibles.", map);
 	if (elements.pos == 0)
-		free_and_quit("Initial position not found", map);
+		free_and_quit("Initial position not found.", map);
 	if (elements.exit == 0)
-		free_and_quit("Exit not found", map);
+		free_and_quit("Exit not found.", map);
+	if (BONUS && elements.ennemy == 0)
+		free_and_quit("No enemy in the map.", map);
 }
 
 char	**create_map(char *file, char i)
@@ -170,6 +172,9 @@ char	**create_map(char *file, char i)
 		if (!map_cp)
 			return (free_arrs((void **)map), NULL);
 	}
-	check_for_path(map, map_cp);
+	if (BONUS)
+		check_for_path_bonus(map, map_cp);
+	else
+		check_for_path_first(map, map_cp);
 	return (map);
 }
