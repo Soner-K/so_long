@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:35:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 18:11:10 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:46:28 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	*find_file(char **map, int x, int y)
 		return (GROUND);
 	if (map[x][y] == WALL)
 		return (TRASH_BIN);
-	if (BONUS && map[x][y] == ENNEMY)
+	if (BONUS && map[x][y] == ENEMY)
 		return (YELLOW_VEST);
 	return (NULL);
 }

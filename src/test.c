@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:19:36 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 17:41:52 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:22:36 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 	mlx.map = map;
 	mlx.mlx = mlx_init();
 	sizes = screen_size(&mlx, map);
-	pos = find_initial_pos(map);
+	pos = find_pos(map, PLAYER);
 	if (!mlx.mlx)
 		print_and_exit("AAAAAAAA");
 	mlx.win = mlx_new_window(mlx.mlx, sizes.x, sizes.y, "ttt");

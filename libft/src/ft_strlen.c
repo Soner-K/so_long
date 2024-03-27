@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:59:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/02/29 13:22:33 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:52:09 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ft_strlen(const char *s)
 {
 	long	i;
-
+	
 	if (!s)
 		return (0);
 	i = 0;

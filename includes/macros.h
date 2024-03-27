@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 18:54:15 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:03:35 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
 # define EXIT 'E'
-# define ENNEMY 'V'
+# define ENEMY 'V'
 # define MKO "Allocation issue"
 # define TOO_MANY_EXIT -1
 # define TOO_MANY_POS -2

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:23:50 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 18:54:57 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:04:24 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ char	check_move(t_data *data, int keycode, t_coordinates *pos)
 	if (data->map[cp.x][cp.y] == EXIT && data->collectibles == 0)
 		return (data->x = cp.x, data->y = cp.y, print_move(), end_game(data),
 			END_GAME);
-	else if (data->map[cp.x][cp.y] == EXIT && data->collectibles != 0)
-		return (FALSE);
+	// else if (data->map[cp.x][cp.y] == EXIT && data->collectibles != 0)
+	// 	return (FALSE);
 	if (is_valid)
 		return (*pos = cp, TRUE);
 	else
 		return (FALSE);
 }
 
-// add enemy collision here or in player movement?
 void	replace_and_put(t_data *data, t_coordinates pos, t_coordinates pos_prev,
 		char *file)
 {
@@ -57,7 +56,15 @@ void	replace_and_put(t_data *data, t_coordinates pos, t_coordinates pos_prev,
 		data->map[pos.x][pos.y] = EMPTY;
 		data->collectibles--;
 	}
-	put_element(data, GROUND, pos_prev.y * 64, pos_prev.x * 64);
+	if (BONUS && data->map[pos.x][pos.y] == ENEMY)
+	{
+		ft_putendl_fd("The people won.", 1);
+		close_game(data);
+	}
+	if (data->map[pos_prev.x][pos_prev.y] == EXIT)
+		put_element(data, HELICOPTER, pos_prev.y * 64, pos_prev.x * 64);
+	else
+		put_element(data, GROUND, pos_prev.y * 64, pos_prev.x * 64);
 	put_element(data, file, pos.y * 64, pos.x * 64);
 }
 
@@ -69,7 +76,7 @@ int	player_movement(int key, t_data *data)
 	static int				i;
 
 	if (i++ == 0)
-		pos = find_initial_pos(data->map);
+		pos = find_pos(data->map, PLAYER);
 	pos_cp.x = pos.x;
 	pos_cp.y = pos.y;
 	if (key == W_KEY || key == A_KEY || key == S_KEY || key == D_KEY
@@ -79,8 +86,6 @@ int	player_movement(int key, t_data *data)
 		return (0);
 	if (is_valid)
 		print_move();
-	if (BONUS && data->map[pos.x][pos.y] == 'V')
-		close_game(data);
 	if (key == W_KEY)
 		replace_and_put(data, pos, pos_cp, PLAYER_U);
 	else if (key == D_KEY)

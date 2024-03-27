@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 17:42:02 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:22:01 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,10 @@ void			set_elements(t_elements *elements);
  * @brief Finds the initial position of the player in the map.
  * @param map An array of strings, containing each line of the .ber file
  * acting as the map.
+ * @param c The character to look for.
  * @returns The coordinates of the player in the map.
  */
-t_coordinates	find_initial_pos(char **map);
+t_coordinates	find_pos(char **map, char c);
 
 /**
  * @brief Counts the number of times a given element appears in the map.

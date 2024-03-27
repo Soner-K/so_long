@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/24 18:28:53 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:48:29 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_elements(t_elements *elements)
 	elements->ennemy = 0;
 }
 
-t_coordinates	find_initial_pos(char **map)
+t_coordinates	find_pos(char **map, char c)
 {
 	t_coordinates	p;
 
@@ -37,7 +37,7 @@ t_coordinates	find_initial_pos(char **map)
 	while (map[p.x])
 	{
 		while (map[p.x][++p.y])
-			if (map[p.x][p.y] == 'P')
+			if (map[p.x][p.y] == c)
 				return (p);
 		p.x++;
 		p.y = -1;
@@ -88,7 +88,7 @@ void	free_mlx(t_data *data, t_xpm *sprites)
 		mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	if (data->map[x][y] == EXIT)
+	if (data->map[x][y] == EXIT && data->collectibles == 0)
 		ft_putstr_fd("No more social security, congrats !!!\n", 1);
 	free_arrs((void **)data->map);
 	exit(EXIT_SUCCESS);
