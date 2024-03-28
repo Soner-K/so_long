@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:44:55 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 18:37:24 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:31:09 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,7 @@ int	close_game(t_data *data)
 	return (0);
 }
 
-void	replace_and_put(t_data *data, t_coordinates pos, t_coordinates pos_prev,
-		char *file)
-{
-	if (data->map[pos.x][pos.y] == COLLECTIBLE)
-	{
-		data->map[pos.x][pos.y] = EMPTY;
-		data->collectibles--;
-	}
-	if (BONUS && data->map[pos.x][pos.y] == ENEMY)
-	{
-		ft_putendl_fd("The people won.", 1);
-		close_game(data);
-	}
-	if (data->map[pos_prev.x][pos_prev.y] == EXIT)
-		put_element(data, HELICOPTER, pos_prev.y * 64, pos_prev.x * 64);
-	else
-		put_element(data, GROUND, pos_prev.y * 64, pos_prev.x * 64);
-	put_element(data, file, pos.y * 64, pos.x * 64);
-	if (BONUS)
-		enemy_move(data);
-}
+
 
 // void	key_press(t_data *mlx, int key)
 // {

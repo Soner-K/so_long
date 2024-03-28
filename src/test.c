@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:19:36 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 18:42:12 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:37:03 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 int	main(int ac, char **av)
 {
 	t_data	mlx;
-	// t_coordinates *tab;
+	// t_enemies enemies[5];
 	t_coordinates sizes;
 	int			f[9];
 	t_coordinates	pos;
@@ -62,11 +62,11 @@ int	main(int ac, char **av)
 	mlx.collectibles = count_element(mlx.map, COLLECTIBLE);
 	set_map(&mlx, map);
 	mlx_hook(mlx.win, KeyPress, 1L << 0, player_movement, &mlx);
-	// mlx_hook(mlx.win, KeyPress, 1L << 0, enemy_move, &mlx);
-	mlx_hook(mlx.win, DestroyNotify, KeyPressMask, close_game, &mlx);
+	// mlx_hook(mlx.win, KeyPress, 1L << 1, enemy_move, &mlx);
+	mlx_hook(mlx.win, DestroyNotify, 1L << 2, close_game, &mlx);
 	mlx_loop(mlx.mlx);
 
-	// tab = enemy_tab(&mlx);
-	// for (int i = 0; i < 5; i++)
-	// 	printf("i.x = %d i.y = %d\n", tab[i].x, tab[i].y);
+	// enemy_tab(mlx.map, enemies);
+	// for (int i = 0; i < count_element(mlx.map, ENEMY); i++)
+	// 	printf("i.x = %d i.y = %d\n", enemies[i].x, enemies[i].y);
 }

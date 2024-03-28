@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 17:48:25 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:08:15 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_elements
 
 typedef struct s_coordinates
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 }			t_coordinates;
 
 typedef struct s_xpm
@@ -43,12 +43,26 @@ typedef struct s_xpm
 	void	*vest;
 }			t_xpm;
 
+typedef struct s_cross
+{
+	char	up;
+	char	right;
+	char	down;
+	char	left;
+}			t_cross;
+
 typedef struct s_enemies
 {
-	char			up_down;
-	t_coordinates	pos;
-}			t_enemies;
-
+	int		x;
+	int		y;
+	int		x_prev;
+	int		y_prev;
+	char	up;
+	char	right;
+	char	down;
+	char	left;
+	// t_cross	*moves;	
+}				t_enemies;
 
 typedef struct s_data
 {

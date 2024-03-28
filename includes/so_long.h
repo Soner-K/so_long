@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 18:38:10 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:38:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,11 @@ void			check_assets(int i, int f[NB_ASSETS]);
 t_coordinates	screen_size(t_data *data, char **map);
 
 /**
- * @brief Checks the used key and, if it is a valid key, moves the player.
+ * @brief Checks the used key and, if it is a valid key, and the move is valid,
+ * moves the player.
  * @param key The key that was pressed.
  * @param data Adress of a structure containing a pointer to the mlx's adress,
- * the window's adress, the map ar, the number of collectibles and the
+ * the window's adress, the map array, the number of collectibles and the
  * number of enemies.
  * @returns
  */
@@ -190,9 +191,9 @@ int				end_game(t_data *data);
  */
 int				close_game(t_data *data);
 
-void			enemy_move(t_data *data);
+void			enemy_move(t_data *data, int i, int nb);
 
-// t_coordinates	*enemy_tab(t_data *data);
-void			replace_and_put(t_data *data, t_coordinates pos,
+void			enemy_tab(char **map, t_enemies *enemies);
+void			move_player(t_data *data, t_coordinates pos,
 					t_coordinates pos_prev, char *file);
 #endif
