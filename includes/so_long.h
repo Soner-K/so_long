@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/28 14:38:33 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:27:46 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,19 @@ int				close_game(t_data *data);
 void			enemy_move(t_data *data, int i, int nb);
 
 void			enemy_tab(char **map, t_enemies *enemies);
-void			move_player(t_data *data, t_coordinates pos,
+int				move_player(t_data *data, t_coordinates pos,
 					t_coordinates pos_prev, char *file);
+void			print_move(t_data *data);
+
+/**
+ * @brief Puts all the xpm files to images.
+ * @param mlx Adress of a structure containing a pointer to the mlx's adress
+ * and the window's adress. 
+ * @param sprites Adress of a structure containing pointers to all the images'
+ * files.
+ * @param x Length in pixels.
+ * @param y Width in pixels.
+ * @returns void.
+ */
+void	set_xpm_files(t_data *data, t_xpm *sprites, int x, int y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:15:35 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/28 15:30:39 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:13:48 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	valid_moves(char **map, t_enemies *enemies, int x, int y)
 		enemies->left = 1;
 }
 
-void	enemy_tab(char **map, t_enemies *enemies)
+void	enemy_array(char **map, t_enemies *enemies)
 {
 	int	i;
 	int	x;
@@ -50,10 +50,6 @@ void	enemy_tab(char **map, t_enemies *enemies)
 				enemies[i].x_prev = x;
 				enemies[i].y_prev = y;
 				valid_moves(map, &enemies[i], enemies[i].x, enemies[i].y);
-				// printf("\nx %d y %d\n", enemies[i].x, enemies[i].y);
-				// printf("\nup %d down %d", enemies[i].up, enemies[i].down);
-				// printf("left %d right %d\n", enemies[i].left,
-				// enemies[i].right);
 				i++;
 			}
 		}
@@ -61,82 +57,82 @@ void	enemy_tab(char **map, t_enemies *enemies)
 	}
 }
 
-char	move_enemies(t_data *data, t_enemies *enemies, char mode)
+char	move_enemies(t_enemies *enemies, char mode)
 {
 	if (mode == DOWN)
 	{
-		// printf("x before %d y before %d\n", enemies->x, enemies->y);
-		put_element(data, YELLOW_VEST, ++(enemies->x) * 64, enemies->y * 64);
+		enemies->x += 1;
 		return (TRUE);
 	}
 	if (mode == UP)
 	{
-		// printf("x before %d y before %d\n", enemies->x, enemies->y);
-		put_element(data, YELLOW_VEST, --(enemies->x) * 64, enemies->y * 64);
-		// printf("x after %d y after %d\n", enemies->x, enemies->y);
+		enemies->x -= 1;
 		return (TRUE);
 	}
 	if (mode == RIGHT)
 	{
-		// printf("x before %d y before %d\n", enemies->x, enemies->y);
-		put_element(data, YELLOW_VEST, (enemies->x) * 64, ++(enemies->y) * 64);
-		// printf("x after %d y after %d\n", enemies->x, enemies->y);
+		enemies->y += 1;
 		return (TRUE);
 	}
 	if (mode == LEFT)
 	{
-		// printf("x before %d y before %d\n", enemies->x, enemies->y);
-		put_element(data, YELLOW_VEST, (enemies->x) * 64, --(enemies->y) * 64);
-		// printf("x after %d y after %d\n", enemies->x, enemies->y);
+		enemies->y -= 1;
 		return (TRUE);
 	}
 	return (FALSE);
 }
+                      
+void	reset_map(t_data *data, t_enemies *enemies)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	x = -1;
+	y = -1;
+	while (data->map[++x])
+	{
+		while (data->map[x][++y])
+		{
+			if (data->map[x][y] == ENEMY && i < count_element(data->map, ENEMY))
+			{
+				data->map[enemies[i].x][enemies[i].y] = ENEMY;
+				data->map[enemies[i].x_prev][enemies[i].y_prev] = EMPTY;
+				put_element(data, GROUND, enemies[i].x_prev * 64,
+					enemies[i].y_prev * 64);
+				put_element(data, YELLOW_VEST, enemies[i].x * 64, enemies[i].y
+					* 64);
+				i++;
+				printf("dssds %d\n", i);
+			}
+		}
+		y = -1;
+	}
+}
 
 void	enemy_move(t_data *data, int i, int nb)
 {
-	t_enemies	enemies[5];
-	char		true;
+	t_enemies	enemies[15];
 
-	// enemies = malloc(sizeof(t_enemies) * nb);
-	enemy_tab(data->map, enemies);
-	true = 0;
-	while (i < nb)
-	{
-		printf("enemies[%d].x = %d enemies[%d].y = %d\n", i, enemies[i].x, i,
-			enemies[i].y);
-		printf("enemies[%d].x_prev = %d enemies[%d].y_prev = %d\n", i,
-			enemies[i].x_prev, i, enemies[i].y_prev);
-		i++;
-	}
-	printf("\n");
-	print_strs(data->map);
-	printf("\n");
-	i = 0;
+	enemy_array(data->map, enemies);
 	while (i < nb)
 	{
 		if (enemies[i].down == 1)
-			true = move_enemies(data, &enemies[i], DOWN);
+			enemies[i].x++;
 		else if (enemies[i].up == 1)
-			true = move_enemies(data, &enemies[i], UP);
+			enemies[i].x--;
 		else if (enemies[i].right == 1)
-			true = move_enemies(data, &enemies[i], RIGHT);
+			enemies[i].y++;
 		else if (enemies[i].left == 1)
-			true = move_enemies(data, &enemies[i], LEFT);
-		if (true)
-		{
-			printf("x prev %d y prev (enemy_move) %d\n", enemies->x_prev,
-			enemies->y_prev);
-			data->map[enemies[i].x_prev][enemies[i].y_prev] = EMPTY;
-			data->map[enemies[i].x][enemies[i].y] = ENEMY;
-			printf("x after %d y after (enemy_move) %d\n", enemies->x,
-			enemies->y);
-			put_element(data, GROUND, enemies[i].x_prev * 64, enemies[i].y_prev
-				* 64);
-		}
-		// free(&enemies[i]);
+			enemies[i].y--;
+		printf("x prev %d y prev %d (enemy_move) ", enemies[i].x_prev,
+		enemies[i].y_prev);
+		printf("x after %d y after  %d (enemy_move)\n", enemies[i].x,
+		enemies[i].y);
 		i++;
 	}
+	reset_map(data, enemies);
 }
 
 // void	enemy_move(t_data *data)
@@ -234,4 +230,51 @@ void	enemy_move(t_data *data, int i, int nb)
 // 		}
 // 		i++;
 // 	}
+// }
+
+// void	enemy_move(t_data *data, int i, int nb)
+// {
+// 	t_enemies	enemies[15];
+// 	char		true;
+
+// 	// enemies = malloc(sizeof(t_enemies) * nb);
+// 	enemy_tab(data->map, enemies);
+// 	true = 0;
+// 	// while (i < nb)
+// 	// {
+// 	// 	printf("enemies[%d].x = %d enemies[%d].y = %d\n", i, enemies[i].x, i,
+// 	// 		enemies[i].y);
+// 	// 	printf("enemies[%d].x_prev = %d enemies[%d].y_prev = %d\n", i,
+// 	// 		enemies[i].x_prev, i, enemies[i].y_prev);
+// 	// 	i++;
+// 	// }
+// 	printf("\n");
+// 	print_strs(data->map);
+// 	printf("\n");
+// 	i = 0;
+// 	reset_map()
+// 	// while (i < nb)
+// 	// {
+// 	// 	if (enemies[i].down == 1)
+// 	// 		true = move_enemies(data, &enemies[i], DOWN);
+// 	// 	else if (enemies[i].up == 1)
+// 	// 		true = move_enemies(data, &enemies[i], UP);
+// 	// 	else if (enemies[i].right == 1)
+// 	// 		true = move_enemies(data, &enemies[i], RIGHT);
+// 	// 	else if (enemies[i].left == 1)
+// 	// 		true = move_enemies(data, &enemies[i], LEFT);
+// 	// 	if (true)
+// 	// 	{
+// 	// 		// printf("x prev %d y prev (enemy_move) %d\n", enemies[i].x_prev,
+// 	// 		// enemies[i].y_prev);
+// 	// 		data->map[enemies[i].x_prev][enemies[i].y_prev] = EMPTY;
+// 	// 		data->map[enemies[i].x][enemies[i].y] = ENEMY;
+// 	// 		// printf("x after %d y after (enemy_move) %d\n", enemies[i].x,
+// 	// 		// enemies[i].y);
+// 	// 		put_element(data, GROUND, enemies[i].x_prev * 64, enemies[i].y_prev
+// 	// 			* 64);
+// 	// 	}
+// 	// 	// free(&enemies[i]);
+// 	// 	i++;
+// 	// }
 // }

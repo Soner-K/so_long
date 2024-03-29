@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/28 11:34:44 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:23:42 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 #  define BONUS -1
 # endif
 
+# ifndef NB_ENEMY
+#  define NB_ENEMY 0
+# endif
 // #ifndef NB_ASSETS
 // # define NB_ASSETS 0
 // #endif
@@ -64,4 +67,15 @@
 # define D_KEY 100
 # define ESC_KEY 65307
 # define END_GAME -1
+# define NB_ZERO "assets/xpm/0.xpm"
+# define NB_ONE "assets/xpm/1.xpm"
+# define NB_TWO "assets/xpm/2.xpm"
+# define NB_THREE "assets/xpm/3.xpm"
+# define NB_FOUR "assets/xpm/4.xpm"
+# define NB_FIVE "assets/xpm/5.xpm"
+# define NB_SIX "assets/xpm/6.xpm"
+# define NB_SEVEN "assets/xpm/7.xpm"
+# define NB_EIGHT "assets/xpm/8.xpm"
+# define NB_NINE "assets/xpm/9.xpm"
+
 #endif

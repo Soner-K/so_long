@@ -6,36 +6,11 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:35:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 12:46:28 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:27:24 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/**
- * @brief Puts all the xpm files to images.
- * @param mlx Adress of a structure containing a pointer to the mlx's adress
- * and the window's adress. 
- * @param sprites Adress of a structure containing pointers to all the images'
- * files.
- * @param x Length in pixels.
- * @param y Width in pixels.
- * @returns void.
- */
-static void	set_xpm_files(t_data *data, t_xpm *sprites, int x, int y)
-{
-	sprites->player_u = mlx_xpm_file_to_image(data->mlx, PLAYER_U, &x, &y);
-	sprites->player_r = mlx_xpm_file_to_image(data->mlx, PLAYER_R, &x, &y);
-	sprites->player_d = mlx_xpm_file_to_image(data->mlx, PLAYER_D, &x, &y);
-	sprites->player_l = mlx_xpm_file_to_image(data->mlx, PLAYER_L, &x, &y);
-	sprites->card = mlx_xpm_file_to_image(data->mlx, CARD, &x, &y);
-	sprites->ground = mlx_xpm_file_to_image(data->mlx, GROUND, &x, &y);
-	sprites->heli = mlx_xpm_file_to_image(data->mlx, HELICOPTER, &x, &y);
-	sprites->wall = mlx_xpm_file_to_image(data->mlx, TRASH_BIN, &x, &y);
-	if (BONUS)
-		sprites->vest = mlx_xpm_file_to_image(data->mlx, YELLOW_VEST, &x, &y);
-	data->xpm = sprites;
-}
 
 /**
  * @brief Finds the corresponding xpm file depending
