@@ -3,21 +3,3 @@
 1000011111001
 1P00110000E01
 1111111111111
-
-
-flood fill
-{
-	if (x, y == 1)
-		return
-	if (x-1 , y != 1)
-		floodfill(x, y)
-	if (x , y+1 != 1)
-		flood flood
-	if (x+1 , y != 1)
-		flood flood
-	if (x , y-1 != 1)
-		flood fill
-}
-
-
-cat|colonne hihi ls "rwqotuowrir felgkqe" | ls > outredir << eof

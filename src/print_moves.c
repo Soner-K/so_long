@@ -6,13 +6,13 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:54:28 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 17:45:08 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:12:54 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*give_number(int *number)
+static char	*give_unit(int *number)
 {
 	if ((*number) % 10 == 0 && *number != 0)
 		return ((*number) /= 10, NB_ZERO);
@@ -37,7 +37,7 @@ char	*give_number(int *number)
 	return (NULL);
 }
 
-void	put_nb(t_data *data, char *str, t_coordinates p, t_xpm sprites)
+static void	put_one(t_data *data, char *str, t_coordinates p, t_xpm sprites)
 {
 	if (!ft_strcmp(str, NB_ZERO))
 		mlx_put_image_to_window(data->mlx, data->win, sprites.zero, p.y, p.x);
@@ -61,7 +61,7 @@ void	put_nb(t_data *data, char *str, t_coordinates p, t_xpm sprites)
 		mlx_put_image_to_window(data->mlx, data->win, sprites.nine, p.y, p.x);
 }
 
-void	one_nb_to_screen(t_data *data, char *str, int x, int y)
+static void	one_nb_to_screen(t_data *data, char *str, int x, int y)
 {
 	int				fd;
 	t_coordinates	pos;
@@ -73,34 +73,42 @@ void	one_nb_to_screen(t_data *data, char *str, int x, int y)
 		end_game(data);
 	}
 	close(fd);
-	pos.x = x * 8;
-	pos.y = y * 8;
-	put_nb(data, str, pos, *data->xpm);
+	pos.x = x;
+	pos.y = y;
+	put_one(data, str, pos, *data->xpm);
 }
 
-void	print_move_to_screen(t_data *data, int nb)
+static void	print_move_to_screen(t_data *data, int nb)
 {
 	char	*str;
 	int		x;
 	int		y;
 
-	x = find_len_strs(data->map) + 1;
+	x = find_len_strs(data->map);
 	y = ft_strlen(data->map[0]) - 1;
 	while (nb)
 	{
-		str = give_number(&nb);
+		str = give_unit(&nb);
 		if (str == NULL)
 			break ;
-		one_nb_to_screen(data, str, x, y);
+		one_nb_to_screen(data, str, x * 64, y * 64);
 		y--;
 	}
 }
 
 void	print_move(t_data *data)
 {
-	static int move;
+	static int	move;
+	static int	len_screen;
 
+	if (BONUS && move == 0)
+		len_screen = ft_strlen(data->map[0]);
 	move++;
+	if (BONUS && move > len_screen * 64)
+	{
+		ft_putendl_fd("Screen too small to print the moves", 2);
+		quit_game(data);
+	}
 	if (BONUS == 0)
 		ft_printf("%d\n", move);
 	else

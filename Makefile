@@ -15,32 +15,34 @@ LIBS				=		libs.h \
 LIBS_DIR			=		includes
 HEADERS				=		$(addprefix $(LIBS_DIR)/, $(LIBS))
 
-FILES				=		test.c \
+FILES				=		main.c \
 							create_map.c \
 							parse_map.c \
 							utils.c \
 							flood_fill.c \
 							set_map.c \
-							utils2.c \
+							end_game.c \
 							events.c \
-							enemy_move.c \
 							print_moves.c
 
 MAPS				:=		maps/bad_extension.txt \
+							maps/bonus_not_ok.ber \
+							maps/bonus_ok.ber \
+							maps/closed_entry.ber\
+							maps/closed_exit.ber\
 							maps/empty.ber\
 							maps/no_collectible.ber\
 							maps/no_entry.ber\
 							maps/no_exit.ber\
 							maps/no_extension\
 							maps/not_closed.ber\
+							maps/ok.ber \
 							maps/one_line.ber\
 							maps/only_wall.ber\
 							maps/parsable.ber\
 							maps/two_maps.ber\
 							maps/uneven.ber\
 							maps/wrong_characters.ber\
-							maps/closed_entry.ber\
-							maps/closed_exit.ber\
 
 
 SRC_DIR				=		src
@@ -49,21 +51,27 @@ SRC					=		$(addprefix $(DIRECTORY)/, $(FILES))
 OBJ_DIR				= 		obj
 OBJ					=		$(addprefix $(OBJ_DIR)/,$(FILES:.c=.o))
 
+OBJ_DIR_BONUS		=		obj_bonus
+OBJ_BONUS			=		$(addprefix $(OBJ_DIR_BONUS)/, $(FILES:.c=.o))
+
 CC					=		cc
 CFLAGS				=		-Wall -Wextra -Werror -g3 -I includes
 
-LENGTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$1}')		
+LENGTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$1}')
 WIDTH				:=		$(shell xdpyinfo | grep dim | awk '{print $$2}' | awk -F x '{print $$2}')
+
 IS_BONUS			:=		0
 ifeq (bonus, $(filter bonus, $(MAKECMDGOALS)))
 	IS_BONUS		=		1
 endif
-N_ASSETS			:=		9
+
+N_ASSETS			:=		8
+ifeq ($(IS_BONUS), 1)
+	N_ASSETS 		= 		9
+endif
 
 
-FILES_SPRITES		:=		"$(shell find assets/xpm -type f)"
-
-MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DASSETS="\$(FILES_SPRITES)\" -DBONUS=$(IS_BONUS)
+MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DBONUS=$(IS_BONUS) -DNB_ASSETS=$(N_ASSETS)
 
 all					:		$(NAME)
 
@@ -79,18 +87,34 @@ $(NAME)				:		$(OBJ_DIR) $(OBJ)
 							$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) -Lmlx -lX11 -lXext -lm -o $(NAME)
 							@echo "$(LGREEN)so_long compiled ! Have fun\n$(COLOR_END)"
 
-bonus				:		$(NAME)
+bonus				:		$(OBJ_DIR_BONUS) $(OBJ_BONUS)
+							@echo "\n"
+							@echo "$(LYELLOW)Compiling libft...$(COLOR_END)"
+							make -s -C $(LIBFT_DIR)
+							@echo "$(LYELLOW)Compiling minilibx...$(COLOR_END)"
+							make -s -C $(MINILIBX_DIR)
+							@echo "$(GREEN)libft compiled !\n$(COLOR_END)"
+							@echo "$(LYELLOW)Compiling so_long$(COLOR_END)"
+							$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MINILIBX) -Lmlx -lX11 -lXext -lm -o $(NAME)
+							@echo "$(LGREEN)so_long bonus compiled ! Have fun\n$(COLOR_END)"
 
 $(OBJ_DIR)			:		
+							mkdir -p $@
+
+$(OBJ_DIR_BONUS)	:
 							mkdir -p $@
 
 $(OBJ_DIR)/%.o		:		$(SRC_DIR)/%.c
 							$(CC) $(CFLAGS) -c $< -o $@ $(MACROS) 
 							@printf "$(YELLOW)%s created $(FACE_ESCUZME)$(COLOR_END)\n" $@
 
+$(OBJ_DIR_BONUS)/%.o	:	$(SRC_DIR)/%.c
+							$(CC) $(CFLAGS) -c $< -o $@ $(MACROS) 
+							@printf "$(YELLOW)%s created $(FACE_ESCUZME)$(COLOR_END)\n" $@
+
 clean				:	
-							@rm -rf $(OBJ_DIR)
 							@echo "$(BLUE)Removing object files... $(COLOR_END)"
+							@rm -rf $(OBJ_DIR) $(OBJ_DIR_BONUS)
 							@make -s -C libft clean
 							@rm -rf mlx/obj
 							@sleep 0.2

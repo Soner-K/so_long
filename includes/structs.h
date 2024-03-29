@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:37:22 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 17:31:27 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:07:20 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_enemies
 	char	right;
 	char	down;
 	char	left;
-	// t_cross	*moves;	
 }				t_enemies;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 11:48:29 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:13:33 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,34 +66,6 @@ int	count_element(char **map, char c)
 	return (n);
 }
 
-// what if no img?
-void	free_mlx(t_data *data, t_xpm *sprites)
-{
-	int	x;
-	int	y;
-
-	x = data->x;
-	y = data->y;
-	mlx_destroy_image(data->mlx, sprites->player_u);
-	mlx_destroy_image(data->mlx, sprites->player_r);
-	mlx_destroy_image(data->mlx, sprites->player_d);
-	mlx_destroy_image(data->mlx, sprites->player_l);
-	mlx_destroy_image(data->mlx, sprites->card);
-	mlx_destroy_image(data->mlx, sprites->ground);
-	mlx_destroy_image(data->mlx, sprites->heli);
-	mlx_destroy_image(data->mlx, sprites->wall);
-	if (BONUS)
-		mlx_destroy_image(data->mlx, sprites->vest);
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	if (data->map[x][y] == EXIT && data->collectibles == 0)
-		ft_putstr_fd("No more social security, congrats !!!\n", 1);
-	free_arrs((void **)data->map);
-	exit(EXIT_SUCCESS);
-}
-
 void	check_assets(int i, int f[NB_ASSETS])
 {
 	f[0] = open(PLAYER_D, O_RDONLY);
@@ -106,7 +78,7 @@ void	check_assets(int i, int f[NB_ASSETS])
 	f[7] = open(TRASH_BIN, O_RDONLY);
 	if (BONUS)
 		f[8] = open(YELLOW_VEST, O_RDONLY);
-	while (++i < 8)
+	while (++i < NB_ASSETS)
 	{
 		if (f[i] < 0)
 		{
@@ -121,4 +93,29 @@ void	check_assets(int i, int f[NB_ASSETS])
 	if (!BONUS)
 		return (close_handler(8, *f, f[1], f[2], f[3], f[4], f[5], f[6], f[7]));
 	close_handler(9, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8]);
+}
+
+void	check_assets2(int i, int fds[10])
+{
+	fds[0] = open(NB_ZERO, O_RDONLY);
+	fds[1] = open(NB_ONE, O_RDONLY);
+	fds[2] = open(NB_TWO, O_RDONLY);
+	fds[3] = open(NB_THREE, O_RDONLY);
+	fds[4] = open(NB_FOUR, O_RDONLY);
+	fds[5] = open(NB_FIVE, O_RDONLY);
+	fds[6] = open(NB_SIX, O_RDONLY);
+	fds[7] = open(NB_SEVEN, O_RDONLY);
+	fds[8] = open(NB_EIGHT, O_RDONLY);
+	fds[9] = open(NB_NINE, O_RDONLY);
+	while (++i < 10)
+	{
+		if (fds[i] < 0)
+		{
+			close_handler(10, fds[0], fds[1], fds[2], fds[3], fds[4], fds[5],
+				fds[6], fds[7], fds[8], fds[9]);
+			print_and_exit("Issue with one or more asset's file opening.");
+		}
+	}
+	close_handler(10, fds[0], fds[1], fds[2], fds[3], fds[4], fds[5], fds[6],
+		fds[7], fds[8], fds[9]);
 }

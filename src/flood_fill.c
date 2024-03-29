@@ -6,42 +6,12 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:00:05 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/27 16:48:47 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:55:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	fill_around_exit(char **map_cp)
-// {
-// 	t_coordinates	exit;
-
-// 	exit = find_pos(map_cp, EXIT);
-// 	map_cp[exit.x + 1][exit.y] = '2';
-// 	map_cp[exit.x - 1][exit.y] = '2';
-// 	map_cp[exit.x][exit.y + 1] = '2';
-// 	map_cp[exit.x + 1][exit.y - 1] = '2';
-// if (BONUS && map_cp[x][y] == ENEMY)
-// {
-// 	if (x < 0 || y < 0 || x > row - 1 || y > col - 1)
-// 		return ;
-// 	if (map_cp[x + 1][y] != WALL && map_cp[x + 1][y] != ENEMY)
-// 		map_cp[x + 1][y] = WALL;
-// 	if (map_cp[x - 1][y] != WALL && map_cp[x + 1][y] != ENEMY)
-// 		map_cp[x - 1][y] = WALL;
-// 	if (map_cp[x][y + 1] != WALL && map_cp[x + 1][y] != ENEMY)
-// 		map_cp[x][y + 1] = WALL;
-// 	if (map_cp[x][y - 1] != WALL && map_cp[x + 1][y] != ENEMY)
-// 		map_cp[x][y - 1] = WALL;
-// 	return ;
-// }
-// }
-
-/**
- * @brief
- * @param
- * @returns
- */
 static void	flood_fill(char **map_cp, int x, int y)
 {
 	static int	col;
@@ -60,8 +30,6 @@ static void	flood_fill(char **map_cp, int x, int y)
 		return ;
 	if (map_cp[x][y] != WALL)
 		map_cp[x][y] = WALL;
-	// else if (BONUS && map_cp[x][y] != WALL && map_cp[x][y] != ENEMY)
-	// 	map_cp[x][y] = WALL;
 	flood_fill(map_cp, x + 1, y);
 	flood_fill(map_cp, x - 1, y);
 	flood_fill(map_cp, x, y + 1);
@@ -114,11 +82,12 @@ void	check_for_path_first(char **map, char **map_cp)
 	}
 	free_arrs((void **)map_cp);
 }
+
 void	check_for_path_bonus(char **map, char **map_cp)
 {
-	int x;
-	int y;
-	t_coordinates pos;
+	int				x;
+	int				y;
+	t_coordinates	pos;
 
 	x = -1;
 	y = -1;

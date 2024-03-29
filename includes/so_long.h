@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 17:27:46 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:19:21 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,19 +151,6 @@ void			check_assets(int i, int f[NB_ASSETS]);
 //								--> utils2.c
 
 /**
- * @brief Returns the screen size needed to represent a given map,
- * while checking if the map isn'too big for the screen's size.
- * @param data Adress of a structure containing a pointer to the mlx's adress,
- * the window's adress, the map array, the number of collectibles and the
- * number of enemies.
- * @param map An array of strings, containing each line of the .ber file
- * acting as the map.
- * @returns The length and width needed to represent the map in the screen.
- * Exits the program if the map is too big for the screen.
- */
-t_coordinates	screen_size(t_data *data, char **map);
-
-/**
  * @brief Checks the used key and, if it is a valid key, and the move is valid,
  * moves the player.
  * @param key The key that was pressed.
@@ -189,24 +176,19 @@ int				end_game(t_data *data);
  * the window's adress, the map array and the number of collectibles..
  * @returns void.
  */
-int				close_game(t_data *data);
-
-void			enemy_move(t_data *data, int i, int nb);
-
-void			enemy_tab(char **map, t_enemies *enemies);
-int				move_player(t_data *data, t_coordinates pos,
-					t_coordinates pos_prev, char *file);
+int				quit_game(t_data *data);
 void			print_move(t_data *data);
 
 /**
  * @brief Puts all the xpm files to images.
  * @param mlx Adress of a structure containing a pointer to the mlx's adress
- * and the window's adress. 
+ * and the window's adress.
  * @param sprites Adress of a structure containing pointers to all the images'
  * files.
  * @param x Length in pixels.
  * @param y Width in pixels.
  * @returns void.
  */
-void	set_xpm_files(t_data *data, t_xpm *sprites, int x, int y);
+void			set_xpm_files(t_data *data, t_xpm *sprites, int x, int y);
+void			check_assets2(int i, int fds[10]);
 #endif
