@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:23:50 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 20:15:54 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:21:32 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ static int	move_player(t_data *data, t_coordinates pos, t_coordinates pos_prev,
 		put_element(data, HELICOPTER, pos_prev.y * 64, pos_prev.x * 64);
 	else
 		put_element(data, GROUND, pos_prev.y * 64, pos_prev.x * 64);
-	put_element(data, file, pos.y * 64, pos.x * 64);
+	if (BONUS)
+		put_element(data, file, pos.y * 64, pos.x * 64);
+	else
+		put_element(data, PLAYER_U, pos.y * 64, pos.x * 64);
 	return (1);
 }
 
