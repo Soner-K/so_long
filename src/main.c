@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:57:21 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 21:11:23 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 11:43:59 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,28 @@
  * @returns The length and width needed to represent the map in the screen.
  * Exits the program if the map is too big for the screen.
  */
-t_coordinates	check_screen_size(char **map)
+t_coordinates	check_screen_size(t_data *data)
 {
-	t_coordinates	n;
+	t_coordinates	len_map;
+	int				x;
+	int				y;
 
-	n.x = ft_strlen(*map) * 64;
-	n.y = find_len_strs(map) * 64;
+	mlx_get_screen_size(data->mlx, &x, &y);
+	len_map.x = ft_strlen(data->map[0]) * 64;
+	len_map.y = find_len_strs(data->map) * 64;
 	if (BONUS)
-		n.y += 64;
-	if (n.x > LENGTH || n.y > WIDTH)
+		len_map.y += 64;
+	if (len_map.x > x || len_map.y > y - 64)
 	{
-		free_arrs((void **)map);
-		print_and_exit("Map too big");
+		ft_printf("Error\nMap too big.\n");
+		ft_printf("Length %d\n", len_map.x);
+		ft_printf("Width %d\n", len_map.y);
+		free_arrs((void **)data->map);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		exit(EXIT_FAILURE);
 	}
-	return (n);
+	return (len_map);
 }
 
 static void	prepare_data(t_data *data, char *path)
@@ -49,10 +57,10 @@ static void	prepare_data(t_data *data, char *path)
 	data->map = create_map(path, 0);
 	if (!data->map)
 		print_and_exit(MKO);
-	sizes = check_screen_size(data->map);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		free_and_quit("Issue while creating mlx", data->map);
+	sizes = check_screen_size(data);
 	data->win = mlx_new_window(data->mlx, sizes.x, sizes.y, "so_long");
 	if (!data->win)
 	{

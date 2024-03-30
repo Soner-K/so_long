@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 20:51:32 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 11:50:53 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,9 @@ char	**create_map(char *file, char i)
 		if (!map_cp)
 			return (free_arrs((void **)map), NULL);
 	}
-	if (BONUS)
-		check_for_path_bonus(map, map_cp);
-	else
-		check_for_path_first(map, map_cp);
+	// if (BONUS)
+	// 	check_for_path_bonus(map, map_cp);
+	// else
+	check_for_path(map, map_cp);
 	return (map);
 }

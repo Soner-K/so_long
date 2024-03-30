@@ -25,9 +25,21 @@ FILES				=		main.c \
 							events.c \
 							print_moves.c
 
+FILES_BONUS				=		main.c \
+							create_map.c \
+							parse_map.c \
+							utils.c \
+							flood_fill.c \
+							set_map.c \
+							end_game.c \
+							events.c \
+							print_moves.c
+
 MAPS				:=		maps/bad_extension.txt \
-							maps/bonus_not_ok.ber \
+							maps/bonus_closed_enemy.ber \
+							maps/bonus_enemies_closing.ber \
 							maps/bonus_ok.ber \
+							maps/bonus_not_ok.ber \
 							maps/closed_entry.ber\
 							maps/closed_exit.ber\
 							maps/empty.ber\
@@ -47,6 +59,7 @@ MAPS				:=		maps/bad_extension.txt \
 
 SRC_DIR				=		src
 SRC					=		$(addprefix $(DIRECTORY)/, $(FILES))
+SRC_BONUS			=		$(addprefix $(DIRECTORY)/, $(FILES_BONUS))
 
 OBJ_DIR				= 		obj
 OBJ					=		$(addprefix $(OBJ_DIR)/,$(FILES:.c=.o))
@@ -95,7 +108,7 @@ bonus				:		$(OBJ_DIR_BONUS) $(OBJ_BONUS)
 							make -s -C $(MINILIBX_DIR)
 							@echo "$(GREEN)libft compiled !\n$(COLOR_END)"
 							@echo "$(LYELLOW)Compiling so_long$(COLOR_END)"
-							$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MINILIBX) -Lmlx -lX11 -lXext -lm -o $(NAME)
+							@$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MINILIBX) -Lmlx -lX11 -lXext -lm -o $(NAME)
 							@echo "$(LGREEN)so_long bonus compiled ! Have fun\n$(COLOR_END)"
 
 $(OBJ_DIR)			:		
@@ -131,7 +144,16 @@ fclean				:		clean
 
 re					:		fclean all
 
-files_mem			:		$(NAME) $(MAPS)
+m					:		$(NAME) $(MAPS)
+							@rm -f out.txt
+							@echo "MAPS = $(MAPS)"
+							@echo "$(BLUE)Running valgrind on each map...$(COLOR_END)"
+							@for map in $(MAPS); do \
+								valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./so_long $$map > /dev/null 2>> out.txt; \
+							done
+							@echo "$(LBLUE)Done ! Output can be found in out.txt$(COLOR_END)"
+
+b					:		bonus $(MAPS)
 							@rm -f out.txt
 							@echo "MAPS = $(MAPS)"
 							@echo "$(BLUE)Running valgrind on each map...$(COLOR_END)"

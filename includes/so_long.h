@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 20:19:21 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 11:51:14 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				player_movement(int keyhook, t_data *mlx);
  * @returns void. Exits the program and frees map and map_cp if a valid
  * path doesn't exist.
  */
-void			check_for_path_first(char **map, char **map_cp);
+void			check_for_path(char **map, char **map_cp);
 
 /**
  * @brief This function is used on par with check_for_path_first in order
