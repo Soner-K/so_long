@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:57:21 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/30 11:43:59 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:27:26 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_coordinates	check_screen_size(t_data *data)
 	len_map.y = find_len_strs(data->map) * 64;
 	if (BONUS)
 		len_map.y += 64;
-	if (len_map.x > x || len_map.y > y - 64)
+	if (len_map.x > x - 64 || len_map.y > y - 64)
 	{
 		ft_printf("Error\nMap too big.\n");
 		ft_printf("Length %d\n", len_map.x);

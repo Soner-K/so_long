@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:43:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/30 11:51:14 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:25:46 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,6 @@ int				player_movement(int keyhook, t_data *mlx);
  * path doesn't exist.
  */
 void			check_for_path(char **map, char **map_cp);
-
-/**
- * @brief This function is used on par with check_for_path_first in order
- * to check if a valid path exists in the map, considering the enemies'
- * positions.
- * @param map An array of strings, containing each line of the .ber file
- * acting as the map.
- * @param map_cp A copy of map.
- * @returns void. Exits the program and frees map and map_cp if a valid
- * path doesn't exist.
- */
-void			check_for_path_bonus(char **map, char **map_cp);
 
 // 								--> parse_map.c
 

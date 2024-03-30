@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:41:47 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/30 11:50:53 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:00:46 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ static char	check_one_element(char c, t_elements *elements, char **map)
 			free_and_quit("More than one initial position found", map);
 		return (1);
 	}
-	if (BONUS && c == 'V')
-		return (elements->ennemy++, 1);
 	free_and_quit("Unrecognized element in map.", map);
 	return (0);
 }
@@ -140,8 +138,6 @@ static void	check_map_elements(char **map, int i, int j)
 		free_and_quit("Initial position not found.", map);
 	if (elements.exit == 0)
 		free_and_quit("Exit not found.", map);
-	if (BONUS && elements.ennemy == 0)
-		free_and_quit("No enemy in the map.", map);
 }
 
 char	**create_map(char *file, char i)
@@ -166,9 +162,6 @@ char	**create_map(char *file, char i)
 		if (!map_cp)
 			return (free_arrs((void **)map), NULL);
 	}
-	// if (BONUS)
-	// 	check_for_path_bonus(map, map_cp);
-	// else
 	check_for_path(map, map_cp);
 	return (map);
 }

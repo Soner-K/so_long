@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:35:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 18:46:55 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:02:22 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static char	*find_file(char **map, int x, int y)
 		return (GROUND);
 	if (map[x][y] == WALL)
 		return (TRASH_BIN);
-	if (BONUS && map[x][y] == ENEMY)
-		return (YELLOW_VEST);
 	return (NULL);
 }
 
@@ -63,8 +61,6 @@ void	put_element(t_data *data, char *file, int x, int y)
 		mlx_put_image_to_window(data->mlx, data->win, sprites.ground, x, y);
 	else if (!ft_strcmp(file, TRASH_BIN))
 		mlx_put_image_to_window(data->mlx, data->win, sprites.wall, x, y);
-	else if (BONUS && !ft_strcmp(file, YELLOW_VEST))
-		mlx_put_image_to_window(data->mlx, data->win, sprites.vest, x, y);
 	else
 		return (data->x = 0, data->y = 0, free_mlx(data, &sprites));
 }

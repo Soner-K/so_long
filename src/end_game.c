@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:44:55 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 20:15:20 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:01:01 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	destroy_imgs(t_data *data, t_xpm *sprites)
 	mlx_destroy_image(data->mlx, sprites->wall);
 	if (BONUS)
 	{
-		mlx_destroy_image(data->mlx, sprites->vest);
 		mlx_destroy_image(data->mlx, sprites->zero);
 		mlx_destroy_image(data->mlx, sprites->one);
 		mlx_destroy_image(data->mlx, sprites->two);
@@ -92,7 +91,6 @@ void	set_xpm_files(t_data *data, t_xpm *sprites, int x, int y)
 	sprites->wall = mlx_xpm_file_to_image(data->mlx, TRASH_BIN, &x, &y);
 	if (BONUS)
 	{
-		sprites->vest = mlx_xpm_file_to_image(data->mlx, YELLOW_VEST, &x, &y);
 		sprites->zero = mlx_xpm_file_to_image(data->mlx, NB_ZERO, &x, &y);
 		sprites->one = mlx_xpm_file_to_image(data->mlx, NB_ONE, &x, &y);
 		sprites->two = mlx_xpm_file_to_image(data->mlx, NB_TWO, &x, &y);

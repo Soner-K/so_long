@@ -25,24 +25,11 @@ FILES				=		main.c \
 							events.c \
 							print_moves.c
 
-FILES_BONUS				=		main.c \
-							create_map.c \
-							parse_map.c \
-							utils.c \
-							flood_fill.c \
-							set_map.c \
-							end_game.c \
-							events.c \
-							print_moves.c
-
 MAPS				:=		maps/bad_extension.txt \
-							maps/bonus_closed_enemy.ber \
-							maps/bonus_enemies_closing.ber \
-							maps/bonus_ok.ber \
-							maps/bonus_not_ok.ber \
 							maps/closed_entry.ber\
 							maps/closed_exit.ber\
 							maps/empty.ber\
+							maps/max_len_mac.ber\
 							maps/no_collectible.ber\
 							maps/no_entry.ber\
 							maps/no_exit.ber\
@@ -78,13 +65,7 @@ ifeq (bonus, $(filter bonus, $(MAKECMDGOALS)))
 	IS_BONUS		=		1
 endif
 
-N_ASSETS			:=		8
-ifeq ($(IS_BONUS), 1)
-	N_ASSETS 		= 		9
-endif
-
-
-MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DBONUS=$(IS_BONUS) -DNB_ASSETS=$(N_ASSETS)
+MACROS 				:=		-DLENGTH=$(LENGTH) -DWIDTH=$(WIDTH) -DBONUS=$(IS_BONUS)
 
 all					:		$(NAME)
 
@@ -144,7 +125,7 @@ fclean				:		clean
 
 re					:		fclean all
 
-m					:		$(NAME) $(MAPS)
+m					:		$(MAPS)
 							@rm -f out.txt
 							@echo "MAPS = $(MAPS)"
 							@echo "$(BLUE)Running valgrind on each map...$(COLOR_END)"
@@ -153,7 +134,7 @@ m					:		$(NAME) $(MAPS)
 							done
 							@echo "$(LBLUE)Done ! Output can be found in out.txt$(COLOR_END)"
 
-b					:		bonus $(MAPS)
+b					:		$(MAPS)
 							@rm -f out.txt
 							@echo "MAPS = $(MAPS)"
 							@echo "$(BLUE)Running valgrind on each map...$(COLOR_END)"
@@ -162,15 +143,7 @@ b					:		bonus $(MAPS)
 							done
 							@echo "$(LBLUE)Done ! Output can be found in out.txt$(COLOR_END)"
 
-files_out			:		$(NAME) $(MAPS)
-							@echo "MAPS = $(MAPS)"
-							@echo "$(BLUE)Running the program on each map...$(COLOR_END)"
-							@for map in $(MAPS); do \
-								./so_long $$map; \
-							done
-							@echo "$(LBLUE)Done !$(COLOR_END)"
-
-.PHONY				: 		all clean fclean re files_mem files_out
+.PHONY				: 		all clean fclean re bonus m b
 
 
 LGREEN				=	\033[1;32m

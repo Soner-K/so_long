@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 14:42:58 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 20:13:33 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:04:14 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	set_elements(t_elements *elements)
 	elements->collectible = 0;
 	elements->pos = 0;
 	elements->exit = 0;
-	elements->ennemy = 0;
 }
 
 t_coordinates	find_pos(char **map, char c)
@@ -76,23 +75,15 @@ void	check_assets(int i, int f[NB_ASSETS])
 	f[5] = open(GROUND, O_RDONLY);
 	f[6] = open(HELICOPTER, O_RDONLY);
 	f[7] = open(TRASH_BIN, O_RDONLY);
-	if (BONUS)
-		f[8] = open(YELLOW_VEST, O_RDONLY);
 	while (++i < NB_ASSETS)
 	{
 		if (f[i] < 0)
 		{
-			if (!BONUS)
-				close_handler(8, *f, f[1], f[2], f[3], f[4], f[5], f[6], f[7]);
-			else
-				close_handler(9, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7],
-					f[8]);
+			close_handler(8, *f, f[1], f[2], f[3], f[4], f[5], f[6], f[7]);
 			print_and_exit("Issue with one or more asset's file opening.");
 		}
 	}
-	if (!BONUS)
-		return (close_handler(8, *f, f[1], f[2], f[3], f[4], f[5], f[6], f[7]));
-	close_handler(9, f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8]);
+	close_handler(8, *f, f[1], f[2], f[3], f[4], f[5], f[6], f[7]);
 }
 
 void	check_assets2(int i, int fds[10])

@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:36:59 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 20:07:40 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:03:07 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@
 #  define NB_ENEMY 0
 # endif
 
-# ifndef NB_ASSETS
-#  define NB_ASSETS 0
-# endif
-
 # define TRUE 1
 # define FALSE 0
 
@@ -50,7 +46,6 @@
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
 # define EXIT 'E'
-# define ENEMY 'V'
 
 # define TOO_MANY_EXIT -1
 # define TOO_MANY_POS -2
@@ -65,7 +60,8 @@
 # define GROUND "assets/xpm/ground.xpm"
 # define HELICOPTER "assets/xpm/helicopter.xpm"
 # define TRASH_BIN "assets/xpm/trash_bin.xpm"
-# define YELLOW_VEST "assets/xpm/yellow_vest.xpm"
+
+# define NB_ASSETS 8
 
 # define NB_ZERO "assets/xpm/0.xpm"
 # define NB_ONE "assets/xpm/1.xpm"

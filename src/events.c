@@ -6,7 +6,7 @@
 /*   By: sokaraku <sokaraku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:23:50 by sokaraku          #+#    #+#             */
-/*   Updated: 2024/03/29 21:21:32 by sokaraku         ###   ########.fr       */
+/*   Updated: 2024/03/30 12:01:13 by sokaraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ static char	check_move(t_data *data, int keycode, t_coordinates *pos)
 static int	move_player(t_data *data, t_coordinates pos, t_coordinates pos_prev,
 		char *file)
 {
-	if (BONUS && data->map[pos.x][pos.y] == ENEMY)
-	{
-		ft_putendl_fd("The people won.", 1);
-		end_game(data);
-	}
 	if (data->map[pos.x][pos.y] == COLLECTIBLE)
 	{
 		data->map[pos.x][pos.y] = EMPTY;
